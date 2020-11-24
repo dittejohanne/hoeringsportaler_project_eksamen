@@ -12,23 +12,19 @@ export default class HoeringerPage {
 
   template() {
     document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
-      <section id="hoeringer" class="page">
-        <header class="topbar">
-          <h2>hoeringer</h2>
-        </header>
+      <section id="borgermoeder" class="page">
         <div id="grid-hoeringer" class="grid-container"></div>
       </section>
     `;
   }
 
   appendHoeringer(hoeringer) {
-    let template = "";
-    for (let hoering of hoeringer) {
+   let template = "";
+    for (hoering of hoeringer) {
       template += /*html*/ `
         <article>
-          <img src="${hoering.picture.large}">
-          <h4>${hoering.name.first} ${hoering.name.last}</h4>
-          <p><a href="mailto:${hoering.email}">${hoering.email}</a></p>
+        <h2>${hoering.title.rendered}</h2>
+        <p>${hoering.content.rendered}</p>
         </article>
         `;
     }
