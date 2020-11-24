@@ -122,7 +122,7 @@ p {
   height: 8%;
 }
 
-.tabbar {
+#MegaMenu {
   display: none;
 }
 
@@ -271,7 +271,7 @@ select {
   display: none;
 }
 
-.tabbar {
+#MegaMenu {
   display: block;
   background-color: var(--green);
   position: fixed;

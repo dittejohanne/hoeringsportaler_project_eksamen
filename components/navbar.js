@@ -6,7 +6,7 @@ export default class NavBar {
   template() {
     document.querySelector("#hoeringsportal").innerHTML += /*html*/ `
      <!--Burgermenu-->
-    
+     <nav class="tabbar">
      <div id="BurgerMenu">
      <div id="burgerdropdown">
        <div id="burgerbutton" onclick="burgerMenu()">
@@ -23,13 +23,16 @@ export default class NavBar {
        </div>
      </div>
    </div>
+   </nav>
    <!--Burgermenu slut-->
  
     <nav class="tabbar">
+    <div id="MegaMenu">
         <a href="#hoeringer">Høringer</a>
         <a href="#borgermoeder">Borgermøder</a>
         <a href="#om">Om Høringerportaler</a>
-      </nav>
+        <div>
+        </nav>
     `;
   }
 }

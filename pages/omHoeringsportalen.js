@@ -6,7 +6,7 @@ export default class OmPage {
   template() {
     document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
       <section id="om" class="page">
-       <h2>Om høringsportalen<h2> 
+       <h2>Om Høringsportalen<h2> 
        <p><p>
       </section>
     `;
