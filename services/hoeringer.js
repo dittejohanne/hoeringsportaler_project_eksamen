@@ -17,16 +17,15 @@ class HoeringService {
 
   async getHoeringer() {
 
-    await fetch("http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed")
+    return await fetch("http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed")
         .then(function (response) {
-
             return response.json();
-
         })
+    
         .then((json) => {
-            console.log(json);
-            this.aboutPost = json;
-            console.log(this.aboutPost);
+          console.log(json);
+            return json;
+           
         });
 
 }
