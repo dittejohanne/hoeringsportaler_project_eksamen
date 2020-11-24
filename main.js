@@ -1,7 +1,7 @@
 // import your components, pages and services
 import NavBar from "./components/navbar.js";
-import HomePage from "./pages/hoeringer.js";
-import HoeringerPage from "./pages/borgermoeder.js";
+import HomePage from "./pages/borgermoeder.js";
+import HoeringerPage from "./pages/hoeringer.js";
 import spaService from "./services/spa.js";
 import navService from "./services/nav.js"
 import OmPage from "./pages/omHoeringsportalen.js";
