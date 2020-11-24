@@ -1,15 +1,15 @@
 class LoaderService {
   constructor() {
-    this.template();
+    // this.template();
   }
 
-  template() {
-    document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
-      <div id="loader">
-        <div class="spinner"></div>
-      </div>
-    `;
-  }
+  // template() {
+  //   document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
+  //     <div id="loader">
+  //       <div class="spinner"></div>
+  //     </div>
+  //   `;
+  // }
 
   show(show) {
     let loader = document.getElementById('loader');
