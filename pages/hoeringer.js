@@ -28,37 +28,51 @@ export default class HoeringerPage {
         <section id="hoeringContent">
         
         <div class="flexContent">
+        
+        <section class="backgroundimg" style="background-image: url('${this.getFeaturedImageUrl(hoering)}')" >
         <article id="info-boks">
-        <h4>${hoering.acf.horingstype}</h4>
-        <h4>${hoering.acf.horingsfrist}</h4>
+        <div id="paddingInfo">
+        <h4>Høringsfrist</h4>
+        <h3>${hoering.acf.horingsfrist}</h3>
+        <div id="comments" class="flexContent">
         <img src="../images/comments_icon.svg">
         10
+        </div>
+        </div>
         </article>
-        <article id="hoeringsImg">
-        </article>
+        </section> 
         </div>
         
-        <article id="text-boks">
+        <article id="textBoks">
         <h2>${hoering.title.rendered}</h2>
-        ${hoering.content.rendered}
+        <p id="overflowEllipsis">${hoering.content.rendered}</p>
+        
+        <div id="typesTextBoks">
+        <div id="location">
         <img src="../images/location_icon.svg">
-        <h2>${hoering.acf.omrade}</h2>
-        <article>
+        <h3>${hoering.acf.omrade}</h3>
+        </div>
+        <div id="hearing">
+        <img src="../images/hearing.svg">
+        <h3>${hoering.acf.horingstype}</h3>
+        </div>
+        </div>
+        
+        </article>
         </section>
         `;
     });
     document.querySelector("#grid-hoeringer").innerHTML = template;
   }
 
-  // <section class="backgroundimg" style="background-image: url('${this.getFeaturedImageUrl(hoering)}')" >
 
-    // // gets the featured image url
-    // getFeaturedImageUrl(hoering) {
-    //   let imageUrl = "";
-    //   if (hoering._embedded['wp:featuredmedia']) {
-    //     imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url;
-    //   }
-    //   return imageUrl;
-    // }
+    // gets the featured image url
+    getFeaturedImageUrl(hoering) {
+      let imageUrl = "";
+      if (hoering._embedded['wp:featuredmedia']) {
+        imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url;
+      }
+      return imageUrl;
+    }
 
   }
