@@ -195,6 +195,31 @@ p {
   }
 }
 
+
+/* ---------- høringer ---------- */
+
+
+#info-boks {
+  background-color: #2D4459;
+  width: 20%;
+  height: 10%;
+  color: white;
+}
+
+#info-boks img {
+  width: 30%;
+}
+
+#hoeringsImg {
+background-color: yellow;
+height: 40%;
+}
+
+#hoeringContent {
+  width: 100%;
+}
+
+
 /* ---------- styling ---------- */
 /* Grid container */
 .grid-container {

@@ -18,3 +18,4 @@ spaService.init();
 window.pageChange = () => spaService.pageChange();
 window.burgerMenu = () => navService.burgerMenu();
 window.closeBurger = () => navService.closeBurger();
+window.getFeaturedImageUrl = (hoering) => hoeringerPage.getFeaturedImageUrl(hoering);
