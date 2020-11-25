@@ -20,8 +20,8 @@ export default class HoeringerPage {
        <!-- Tab links -->
        <div class="tab">
        <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
-       <button class="tablinks" onclick="openTabs(event, 'Horinger')" id="defaultOpen">Liste</button>
-       <button class="tablinks" id="filtrer" onclick="openTabs(event, 'Filtrér')">Filtrér</button>
+       <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
+       <button class="tablinks" onclick="modalOpen()">Filtrér</button>
        </div>
        
      <!-- Tab content -->
@@ -29,8 +29,35 @@ export default class HoeringerPage {
        <div id="Kort" class="tabcontent">
      <img src="../images/map.jpg">
        </div>
+
+       
+     <<div id="myModal" class="modal">
+     <!-- Modal content -->
+     <div class="modal-content">
+       
+  <div class="modal-location">
+  <h4>Område</h4>
+  <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Vælg områder</button>
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    <a href="#about">About</a>
+    <a href="#base">Base</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <a href="#custom">Custom</a>
+    <a href="#support">Support</a>
+    <a href="#tools">Tools</a>
+  </div>
+  </div>
+  </div>
+   
+   </div>
+       </div>
+
      
-     <div id="grid-hoeringer" class="grid-container"></div>
+     <div id="grid-hoeringer" class="grid-container tabcontent"></div>
+     
       </section>
     `;
   } 
@@ -40,7 +67,6 @@ export default class HoeringerPage {
     let template = "";
     hoeringer.forEach((hoering) => {
       template += /*html*/ `  
-      <div id="Horinger" class="tabcontent">
       <section id="hoeringContent">
         
         <div class="flexContent">
@@ -76,7 +102,6 @@ export default class HoeringerPage {
         
         </article>
         </section>
-        </div>
         `;
     });
     document.querySelector("#grid-hoeringer").innerHTML = template;
