@@ -15,17 +15,33 @@ export default class HoeringerPage {
       <section id="hoeringer" class="page">
      <h2>Høringer</h2>
      <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
-      <div id="grid-hoeringer" class="grid-container"></div>
+     
+      <!------------------ Tab menu ---------------->
+       <!-- Tab links -->
+       <div class="tab">
+       <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
+       <button class="tablinks" onclick="openTabs(event, 'Horinger')" id="defaultOpen">Liste</button>
+       <button class="tablinks" id="filtrer" onclick="openTabs(event, 'Filtrér')">Filtrér</button>
+       </div>
+       
+     <!-- Tab content -->
+       
+       <div id="Kort" class="tabcontent">
+     <img src="../images/map.jpg">
+       </div>
+     
+     <div id="grid-hoeringer" class="grid-container"></div>
       </section>
     `;
-  }
+  } 
 
   appendHoeringer(hoeringer) {
     console.log(hoeringer)
     let template = "";
     hoeringer.forEach((hoering) => {
-      template += /*html*/ `
-        <section id="hoeringContent">
+      template += /*html*/ `  
+      <div id="Horinger" class="tabcontent">
+      <section id="hoeringContent">
         
         <div class="flexContent">
         
@@ -60,6 +76,7 @@ export default class HoeringerPage {
         
         </article>
         </section>
+        </div>
         `;
     });
     document.querySelector("#grid-hoeringer").innerHTML = template;
