@@ -1,66 +1,17 @@
 import hoeringService from "../services/hoeringer.js";
 export default class HoeringerPage {
   constructor() {
-    this.template();
-    this.initData();
+    this.init()
   }
 
+  init() {
+    this.initData();
+    this.template();
+  }
   async initData() {
     let hoeringer = await hoeringService.getHoeringer();
     this.appendHoeringer(hoeringer);
   }
-
-  template() {
-    document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
-      <section id="hoeringer" class="page">
-     <h2>Høringer</h2>
-     <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
-     
-      <!------------------ Tab menu ---------------->
-       <!-- Tab links -->
-       <div class="tab">
-       <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
-       <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
-       <button class="tablinks" onclick="modalOpen()">Filtrér</button>
-       </div>
-       
-     <!-- Tab content -->
-       
-       <div id="Kort" class="tabcontent">
-     <img src="../images/map.jpg">
-       </div>
-
-       
-     <<div id="myModal" class="modal">
-     <!-- Modal content -->
-     <div class="modal-content">
-       
-  <div class="modal-location">
-  <h4>Område</h4>
-  <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Vælg områder</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-    <a href="#about">About</a>
-    <a href="#base">Base</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-    <a href="#custom">Custom</a>
-    <a href="#support">Support</a>
-    <a href="#tools">Tools</a>
-  </div>
-  </div>
-  </div>
-   
-   </div>
-       </div>
-
-     
-     <div id="grid-hoeringer" class="grid-container tabcontent"></div>
-     
-      </section>
-    `;
-  } 
 
   appendHoeringer(hoeringer) {
     console.log(hoeringer)
@@ -116,5 +67,216 @@ export default class HoeringerPage {
       }
       return imageUrl;
     }
+
+    template() {
+      document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
+      <section id="hoeringer" class="page">
+      <div id="header_img">
+       <img src="../images/nyhavn-crop.png">
+       </div> 
+
+       <div id="manchet_mobile">
+        <h2>Høringer</h2>
+       <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
+       </div>
+
+       <div id="manchet_desktop">
+        <h2>Hvad er en høring?</h2>
+       <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
+       </div>
+
+
+       <!------------------ Tab menu mobil ---------------->
+         <!-- Tab links -->
+         <div id="tab_mobile" class="tab">
+         <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
+         <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
+         <button class="tablinks" onclick="modalOpen()">Filtrér</button>
+         </div>
+
+            <!------------ Tab content mobile -------->
+              
+            <<div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+             
+            <!-------- Område ---------->
+         <div class="modal-location">
+         <h4>Område</h4>
+         <div class="dropdown">
+         <button onclick="myFunction()" class="dropbtn">Vælg områder</button>
+         <div id="myDropdown" class="dropdown-content">
+           <input type="text" placeholder="Search.." class="myInput" onkeyup="filterFunction()">
+           <a href="#about">About</a>
+           <a href="#base">Base</a>
+           <a href="#blog">Blog</a>
+           <a href="#contact">Contact</a>
+           <a href="#custom">Custom</a>
+           <a href="#support">Support</a>
+           <a href="#tools">Tools</a>
+         </div>
+         </div>
+         </div>
+       
+          <!-------- Status ---------->
+          <div id="modal-status">
+          <h4>Status</h4>
+          <label class="container">Alle
+          <input type="checkbox" checked="checked">
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="container">Kommende
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="container">Aktive
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="container">Afsluttede
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+        </div>  
+       
+       <!-------- Høringstype ---------->
+       <div id="modal-hoeringstype">
+       <h4>Høringstype</h4>
+       <label class="container">Alle
+       <input type="checkbox" checked="checked">
+       <span class="checkmark"></span>
+       </label>
+       
+       <label class="container">Lokalplan
+       <input type="checkbox">
+       <span class="checkmark"></span>
+       </label>
+       
+       <label class="container">Kommunalplan
+       <input type="checkbox">
+       <span class="checkmark"></span>
+       </label>
+       
+       <label class="container">Dagtilbud og skole
+       <input type="checkbox">
+       <span class="checkmark"></span>
+       </label>
+       
+       <label class="container">Byggesager 
+       <input type="checkbox">
+       <span class="checkmark"></span>
+       </label>
+       
+       <label class="container">Andet
+       <input type="checkbox">
+       <span class="checkmark"></span>
+       </label>
+       </div>
+       
+       <!-------- Periode ---------->
+       <input readonly type="text" id="example" placeholder="">
+       
+          </div>
+              </div>
+
+
+
+
+         <!------------------ Tab menu desktop ---------------->
+         <!-- Tab links -->
+         <div class="tab" id="tab_desktop">
+         <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
+         <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
+         </div>
+         
+    
+          <!------------ Tab content desktop -------->
+  
+<div id="filtrering_desktop">
+<div class="modal-location">
+         <h4>Område</h4>
+         <div class="dropdown">
+         <button onclick="myFunction()" class="dropbtn">Vælg områder</button>
+         <div id="myDropdown" class="dropdown-content">
+           <input type="text" placeholder="Search.." class="myInput" onkeyup="filterFunction()">
+           <a href="#about">About</a>
+           <a href="#base">Base</a>
+           <a href="#blog">Blog</a>
+           <a href="#contact">Contact</a>
+           <a href="#custom">Custom</a>
+           <a href="#support">Support</a>
+           <a href="#tools">Tools</a>
+         </div>
+         </div>
+         </div>
+     
+        <!-------- Status ---------->
+        <div class="modal-location">
+         <h4>Status</h4>
+         <div class="dropdown">
+         <button onclick="myFunction()" class="dropbtn">Vælg status</button>
+         <div id="myDropdown" class="dropdown-content">
+           <input type="text" placeholder="Search.." onkeyup="filterFunction()">
+           <a href="#about">About</a>
+           <a href="#base">Base</a>
+           <a href="#blog">Blog</a>
+           <a href="#contact">Contact</a>
+           <a href="#custom">Custom</a>
+           <a href="#support">Support</a>
+           <a href="#tools">Tools</a>
+         </div>
+         </div>
+         </div>
+     
+     <!-------- Høringstype ---------->
+     <div class="modal-location">
+         <h4>Høringstype</h4>
+         <div class="dropdown">
+         <button onclick="myFunction()" class="dropbtn">Vælg høringstype</button>
+         <div id="myDropdown" class="dropdown-content">
+           <input type="text" placeholder="Search.." onkeyup="filterFunction()">
+           <a href="#about">About</a>
+           <a href="#base">Base</a>
+           <a href="#blog">Blog</a>
+           <a href="#contact">Contact</a>
+           <a href="#custom">Custom</a>
+           <a href="#support">Support</a>
+           <a href="#tools">Tools</a>
+         </div>
+         </div>
+         </div>
+     
+     <!-------- Periode ---------->
+     <div class="modal-location">
+     <h4>Periode</h4>
+     <div class="dropdown">
+     <button onclick="myFunction()" class="dropbtn">Vælg periode</button>
+     <div id="myDropdown" class="dropdown-content">
+       <input type="text" placeholder="Search.." onkeyup="filterFunction()">
+       <a href="#about">About</a>
+       <a href="#base">Base</a>
+       <a href="#blog">Blog</a>
+       <a href="#contact">Contact</a>
+       <a href="#custom">Custom</a>
+       <a href="#support">Support</a>
+       <a href="#tools">Tools</a>
+     </div>
+     </div>
+     </div>
+     </div>
+
+       <div id="grid-hoeringer" class="grid-container tabcontent"></div>
+       
+        <div id="Kort" class="tabcontent">
+            <img src="../images/map.jpg">
+              </div>
+       
+
+        </section>
+      `;
+    } 
 
   }
