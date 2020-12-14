@@ -23,4 +23,7 @@ window.getFeaturedImageUrl = (hoering) => hoeringerService.getFeaturedImageUrl(h
 window.openTabs = (evt, tabName) => hoeringService.openTabs(evt, tabName);
 window.defaultOpen = () => hoeringService.defaultOpen();
 window.modalOpen = () => hoeringService.modalOpen();
+window.search = () => hoeringService.search();
+window.myFunctionFirst = () => hoeringService.myFunctionFirst();
+window.filterFunctionFirst = () => hoeringService.filterFunctionFirst();
 // window.modalClose = () => hoeringService.modalClose();

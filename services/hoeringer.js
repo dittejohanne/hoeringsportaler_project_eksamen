@@ -14,6 +14,75 @@ class HoeringService {
       });
   }
 
+//   // search functionality
+// search(value) {
+//   let searchQuery = value.toLowerCase();
+//   let filteredMovies = [];
+//   for (let movie of movies) {
+//     let title = movie.title.rendered.toLowerCase();
+//     if (title.includes(searchQuery)) {
+//       filteredMovies.push(movie);
+//     }
+//   }
+//   console.log(filteredMovies);
+//   appendMovies(filteredMovies);
+// }
+
+// fetch all genres / categories from WP
+getLocations() {
+  fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(categories) {
+      return categories;
+    });
+}
+
+// // genre selected event - fetch movies by selected category
+// genreSelected(genreId) {
+//   console.log(`Genre ID: ${genreId}`);
+//   if (genreId) {
+//     showLoader(true);
+//     fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${genreId}`)
+//       .then(function(response) {
+//         return response.json();
+//       })
+//       .then(function(movies) {
+//         console.log(movies);
+//         appendMoviesByGenre(movies);
+//         showLoader(false);
+//       });
+//   } else {
+//     // create feedback
+//   }
+// }
+
+// // append movies by genre
+// appendMoviesByGenre(moviesByGenre) {
+//   let htmlTemplate = "";
+
+//   for (let movie of moviesByGenre) {
+//     htmlTemplate += `
+//       <article>
+//         <h2>${movie.title.rendered} (${movie.acf.year})</h2>
+//         <img src="${movie.acf.img}">
+//         <p>${movie.acf.description}</p>
+//         <iframe src="${movie.acf.trailer}"></iframe>
+//       </article>
+//     `;
+//   }
+
+//   // if no movies, display feedback to the user
+//   if (moviesByGenre.length === 0) {
+//     htmlTemplate = `
+//       <p>No Movies</p>
+//     `;
+//   }
+
+//   document.querySelector('#movies-by-genre-container').innerHTML = htmlTemplate;
+// }
+
 
   openTabs(evt, tabName) {
     // Declare all variables
@@ -53,26 +122,26 @@ modalOpen() {
 }
 }
 
-// toggle between hiding and showing the dropdown content */
-// function myFunction() {
-//   document.getElementById("myDropdown").classList.toggle("show");
-// }
+// When the user clicks on the button, toggle between hiding and showing the dropdown content */
+myFunctionFirst() {
+  document.getElementById("myDropdownFirst").classList.toggle("show");
+}
 
-// function filterFunction() {
-//   var input, filter, ul, li, a, i;
-//   input = document.getElementById("myInput");
-//   filter = input.value.toUpperCase();
-//   div = document.getElementById("myDropdown");
-//   a = div.getElementsByTagName("a");
-//   for (i = 0; i < a.length; i++) {
-//     txtValue = a[i].textContent || a[i].innerText;
-//     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//       a[i].style.display = "";
-//     } else {
-//       a[i].style.display = "none";
-//     }
-//   }
-// }
+filterFunctionFirst() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdownFirst");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
   
   
   // // When the user clicks on <span> (x), close the modal

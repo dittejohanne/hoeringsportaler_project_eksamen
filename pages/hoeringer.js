@@ -10,7 +10,10 @@ export default class HoeringerPage {
   }
   async initData() {
     let hoeringer = await hoeringService.getHoeringer();
+    let categories = hoeringService.getLocations();
+    console.log(categories);
     this.appendHoeringer(hoeringer);
+    this.appendLocations(categories)
   }
 
   appendHoeringer(hoeringer) {
@@ -58,6 +61,20 @@ export default class HoeringerPage {
     document.querySelector("#grid-hoeringer").innerHTML = template;
   }
 
+  // append all genres as select options (dropdown)
+appendLocations(districts) {
+  console.log(districts);
+  let htmlTemplate = "";
+  for (let district of districts) {
+    htmlTemplate += `
+      <option value="${district.id}">${district.name}</option>
+    `;
+  }
+
+  document.querySelector('#select-district').innerHTML += htmlTemplate;
+}
+
+
 
     // gets the featured image url
     getFeaturedImageUrl(hoering) {
@@ -86,6 +103,10 @@ export default class HoeringerPage {
        </div>
 
 
+
+
+
+<!------------------ Først forsøg på dropdown filtrering (VIRKER IKKE) --------------->
        <!------------------ Tab menu mobil ---------------->
          <!-- Tab links -->
          <div id="tab_mobile" class="tab">
@@ -191,17 +212,20 @@ export default class HoeringerPage {
          <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
          <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          </div>
-         
+
+         <!-- <input type="search" placeholder="Search" onkeyup="search(this.value)">
+         <section id="movies-by-genre-container" class="grid-container"></section> -->
     
           <!------------ Tab content desktop -------->
-  
+
+
 <div id="filtrering_desktop">
 <div class="modal-location">
          <h4>Område</h4>
          <div class="dropdown">
-         <button onclick="myFunction()" class="dropbtn">Vælg områder</button>
-         <div id="myDropdown" class="dropdown-content">
-           <input type="text" placeholder="Search.." class="myInput" onkeyup="filterFunction()">
+         <button onclick="myFunctionFirst()" class="dropbtn">Vælg områder</button>
+         <div id="myDropdownFirst" class="dropdown-content">
+           <input type="text" placeholder="Search.." class="myInput" onkeyup="filterFunctionFirst()">
            <a href="#about">About</a>
            <a href="#base">Base</a>
            <a href="#blog">Blog</a>
@@ -268,13 +292,22 @@ export default class HoeringerPage {
      </div>
      </div>
 
+     <!------------------ Først forsøg på dropdown filtrering (VIRKER IKKE) SLUT --------------->
+     
+
+      <!------------ områder dropdown ----------->
+
+     <select id="select-district" name="districs" onchange="locationSelected(this.value)">
+       <option value="">Alle områder</option>
+     </select>
+     <!--- <section id="movies-by-genre-container" class="grid-container"></section> -->
+
        <div id="grid-hoeringer" class="grid-container tabcontent"></div>
        
         <div id="Kort" class="tabcontent">
             <img src="../images/map.jpg">
               </div>
        
-
         </section>
       `;
     } 

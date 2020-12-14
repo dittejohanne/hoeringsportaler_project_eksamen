@@ -472,8 +472,8 @@ width: 95%;
 }
 
 .modal-location {
-  width: 80%;
   margin: 0 auto;
+  text-align: left;
 }
 
 .modal-content h4 {
@@ -517,21 +517,21 @@ width: 95%;
 .dropbtn {
   background-color: white;
   color: var(--blue);
-  padding: 16px 67px;
+  padding: 13px 100px 13px 16px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  text-align: left!important;;
 }
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+  background-color: white;
 }
 
 /* The search field */
 .myInput {
   box-sizing: border-box;
-  background-image: url('searchicon.png');
   background-position: 14px 12px;
   background-repeat: no-repeat;
   font-size: 16px;
@@ -555,7 +555,6 @@ width: 95%;
   display: none;
   position: absolute;
   background-color: #f6f6f6;
-  min-width: 230px;
   border: 1px solid #ddd;
   z-index: 1;
 }
@@ -753,7 +752,7 @@ select {
   box-sizing: border-box;
   display: block;
   background: #fff;
-  border: 0;
+  border: 2px solid var(--blue);
   border-radius: 0;
 }
 
@@ -777,7 +776,10 @@ select {
 #filtrering_desktop{
   display: flex;
   margin-top: 15%;
-  width: 30%;
+}
+
+.modal-location h4 {
+  margin: 2%;
 }
 
 /* ---------- tabbar styling ---------- */
@@ -848,6 +850,8 @@ select {
 .tablinks {
   width: 40%;
 }
+
+/* ----filtrering styling---- */
 
 
 }
