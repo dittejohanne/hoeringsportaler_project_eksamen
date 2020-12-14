@@ -29,8 +29,8 @@ class HoeringService {
 // }
 
 // fetch all Locaitions / categories from WP
-getLocations() {
-  fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories')
+async getLocations() {
+  return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories/')
     .then(function(response) {
       return response.json();
     })

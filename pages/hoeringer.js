@@ -10,7 +10,7 @@ export default class HoeringerPage {
   }
   async initData() {
     let hoeringer = await hoeringService.getHoeringer();
-    let categories = hoeringService.getLocations();
+    let categories = await hoeringService.getLocations();
     console.log(categories);
     this.appendHoeringer(hoeringer);
     this.appendLocations(categories)
