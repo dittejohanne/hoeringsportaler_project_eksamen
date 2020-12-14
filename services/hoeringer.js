@@ -28,7 +28,7 @@ class HoeringService {
 //   appendMovies(filteredMovies);
 // }
 
-// fetch all genres / categories from WP
+// fetch all Locaitions / categories from WP
 getLocations() {
   fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories')
     .then(function(response) {
