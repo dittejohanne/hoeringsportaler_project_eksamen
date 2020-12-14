@@ -4,7 +4,7 @@ class HoeringService {
 
   async getHoeringer() {
     return await fetch(
-      "http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=2"
+      "http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed"
     )
       .then(function (response) {
         return response.json();
@@ -39,49 +39,21 @@ async getLocations() {
     });
 }
 
-// // genre selected event - fetch movies by selected category
-// genreSelected(genreId) {
-//   console.log(`Genre ID: ${genreId}`);
-//   if (genreId) {
-//     showLoader(true);
-//     fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${genreId}`)
-//       .then(function(response) {
-//         return response.json();
-//       })
-//       .then(function(movies) {
-//         console.log(movies);
-//         appendMoviesByGenre(movies);
-//         showLoader(false);
-//       });
-//   } else {
-//     // create feedback
-//   }
-// }
-
-// // append movies by genre
-// appendMoviesByGenre(moviesByGenre) {
-//   let htmlTemplate = "";
-
-//   for (let movie of moviesByGenre) {
-//     htmlTemplate += `
-//       <article>
-//         <h2>${movie.title.rendered} (${movie.acf.year})</h2>
-//         <img src="${movie.acf.img}">
-//         <p>${movie.acf.description}</p>
-//         <iframe src="${movie.acf.trailer}"></iframe>
-//       </article>
-//     `;
-//   }
-
-//   // if no movies, display feedback to the user
-//   if (moviesByGenre.length === 0) {
-//     htmlTemplate = `
-//       <p>No Movies</p>
-//     `;
-//   }
-
-//   document.querySelector('#movies-by-genre-container').innerHTML = htmlTemplate;
-// }
+// genre selected event - fetch movies by selected category
+async locationSelected(locationId) {
+  console.log(`Location ID: ${locationId}`);
+  if (locationId) {
+    return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${locationId}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(locations) {
+        return locations;
+      });
+  } else {
+    // create feedback
+  }
+}
 
 
   openTabs(evt, tabName) {

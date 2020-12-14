@@ -11,9 +11,11 @@ export default class HoeringerPage {
   async initData() {
     let hoeringer = await hoeringService.getHoeringer();
     let categories = await hoeringService.getLocations();
-    console.log(categories);
+    let districtByCategory = await hoeringService.locationSelected();
+    console.log(districtByCategory);
     this.appendHoeringer(hoeringer);
     this.appendLocations(categories)
+    this.appendDistrictByCategory(districtByCategory)
   }
 
   appendHoeringer(hoeringer) {
@@ -72,6 +74,31 @@ appendLocations(districts) {
   }
 
   document.querySelector('#select-district').innerHTML += htmlTemplate;
+}
+
+// append movies by genre
+appendDistrictByCategory(districtByCategory) {
+  let htmlTemplate = "";
+
+  for (let district of districtByCategory) {
+    htmlTemplate += `
+      <article>
+        <h2>${district.title.rendered} (${district.acf.year})</h2>
+        <img src="${district.acf.img}">
+        <p>${district.acf.description}</p>
+        <iframe src="${district.acf.trailer}"></iframe>
+      </article>
+    `;
+  }
+
+  // if no movies, display feedback to the user
+  if (districtByCategory.length === 0) {
+    htmlTemplate = `
+      <p>Ingen høringer</p>
+    `;
+  }
+
+  document.querySelector('#movies-by-genre-container').innerHTML = htmlTemplate;
 }
 
 
