@@ -13,6 +13,7 @@ export default class HoeringerPage {
     let categories = await hoeringService.getLocations();
     let districtByCategory = await hoeringService.locationSelected();
     console.log(districtByCategory);
+    console.log(categories);
     this.appendHoeringer(hoeringer);
     this.appendLocations(categories)
     this.appendDistrictByCategory(districtByCategory)
@@ -82,12 +83,41 @@ appendDistrictByCategory(districtByCategory) {
 
   for (let district of districtByCategory) {
     htmlTemplate += `
-      <article>
-        <h2>${district.title.rendered} (${district.acf.year})</h2>
-        <img src="${district.acf.img}">
-        <p>${district.acf.description}</p>
-        <iframe src="${district.acf.trailer}"></iframe>
-      </article>
+    <section id="hoeringContent">
+        
+    <div class="flexContent">
+    
+    <section class="backgroundimg" style="background-image: url('${this.getFeaturedImageUrl(hoering)}')" >
+    <article id="info-boks">
+    <div id="paddingInfo">
+    <h4>Høringsfrist</h4>
+    <h3>${hoering.acf.horingsfrist}</h3>
+    <div id="comments" class="flexContent">
+    <img src="../images/comments_icon.svg">
+    10
+    </div>
+    </div>
+    </article>
+    </section> 
+    </div>
+    
+    <article id="textBoks">
+    <h2>${hoering.title.rendered}</h2>
+    <p id="overflowEllipsis">${hoering.content.rendered}</p>
+    
+    <div id="typesTextBoks">
+    <div id="location">
+    <img src="../images/location_icon.svg">
+    <h3>${hoering.acf.omrade}</h3>
+    </div>
+    <div id="hearing">
+    <img src="../images/hearing.svg">
+    <h3>${hoering.acf.horingstype}</h3>
+    </div>
+    </div>
+    
+    </article>
+    </section>
     `;
   }
 
