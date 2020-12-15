@@ -25,5 +25,5 @@ window.defaultOpen = () => hoeringService.defaultOpen();
 window.modalOpen = () => hoeringService.modalOpen();
 window.search = () => hoeringService.search();
 window.myFunctionFirst = () => hoeringService.myFunctionFirst();
-window.filterFunctionFirst = () => hoeringService.filterFunctionFirst();
+window.locationSelected = (value) => hoeringerPage.filterByLocation(value);
 // window.modalClose = () => hoeringService.modalClose();

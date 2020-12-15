@@ -11,12 +11,9 @@ export default class HoeringerPage {
   async initData() {
     let hoeringer = await hoeringService.getHoeringer();
     let categories = await hoeringService.getLocations();
-    let districtByCategory = await hoeringService.locationSelected();
-    console.log(districtByCategory);
     console.log(categories);
     this.appendHoeringer(hoeringer);
     this.appendLocations(categories)
-    this.appendDistrictByCategory(districtByCategory)
   }
 
   appendHoeringer(hoeringer) {
@@ -60,8 +57,17 @@ export default class HoeringerPage {
         </article>
         </section>
         `;
+
     });
     document.querySelector("#grid-hoeringer").innerHTML = template;
+  }
+
+
+  async filterByLocation(locationId) {
+    console.log(locationId);
+    let locations = await hoeringService.locationSelected(locationId);
+    console.log(locations);
+    this.appendHoeringer(locations);
   }
 
   // append all genres as select options (dropdown)
@@ -77,59 +83,6 @@ appendLocations(districts) {
   document.querySelector('#select-district').innerHTML += htmlTemplate;
 }
 
-// append movies by genre
-appendDistrictByCategory(districtByCategory) {
-  let htmlTemplate = "";
-
-  for (let district of districtByCategory) {
-    htmlTemplate += `
-    <section id="hoeringContent">
-        
-    <div class="flexContent">
-    
-    <section class="backgroundimg" style="background-image: url('${this.getFeaturedImageUrl(hoering)}')" >
-    <article id="info-boks">
-    <div id="paddingInfo">
-    <h4>Høringsfrist</h4>
-    <h3>${hoering.acf.horingsfrist}</h3>
-    <div id="comments" class="flexContent">
-    <img src="../images/comments_icon.svg">
-    10
-    </div>
-    </div>
-    </article>
-    </section> 
-    </div>
-    
-    <article id="textBoks">
-    <h2>${hoering.title.rendered}</h2>
-    <p id="overflowEllipsis">${hoering.content.rendered}</p>
-    
-    <div id="typesTextBoks">
-    <div id="location">
-    <img src="../images/location_icon.svg">
-    <h3>${hoering.acf.omrade}</h3>
-    </div>
-    <div id="hearing">
-    <img src="../images/hearing.svg">
-    <h3>${hoering.acf.horingstype}</h3>
-    </div>
-    </div>
-    
-    </article>
-    </section>
-    `;
-  }
-
-  // if no movies, display feedback to the user
-  if (districtByCategory.length === 0) {
-    htmlTemplate = `
-      <p>Ingen høringer</p>
-    `;
-  }
-
-  document.querySelector('#movies-by-genre-container').innerHTML = htmlTemplate;
-}
 
 
 
@@ -270,9 +223,7 @@ appendDistrictByCategory(districtByCategory) {
          <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          </div>
 
-         <!-- <input type="search" placeholder="Search" onkeyup="search(this.value)">
-         <section id="movies-by-genre-container" class="grid-container"></section> -->
-    
+       
           <!------------ Tab content desktop -------->
 
 
@@ -357,7 +308,7 @@ appendDistrictByCategory(districtByCategory) {
      <select id="select-district" name="districs" onchange="locationSelected(this.value)">
        <option value="">Alle områder</option>
      </select>
-     <!--- <section id="movies-by-genre-container" class="grid-container"></section> -->
+     <section id="hoeringer-by-category-container" class="grid-container"></section>
 
        <div id="grid-hoeringer" class="grid-container tabcontent"></div>
        

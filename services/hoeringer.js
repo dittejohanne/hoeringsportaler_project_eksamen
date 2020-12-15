@@ -30,24 +30,27 @@ class HoeringService {
 
 // fetch all Locaitions / categories from WP
 async getLocations() {
-  return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories/')
+  return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=3')
     .then(function(response) {
       return response.json();
     })
     .then(function(categories) {
+      console.log(categories);
       return categories;
     });
 }
 
-// genre selected event - fetch movies by selected category
+// category selected event - fetch hoeringer by selected category
 async locationSelected(locationId) {
   console.log(`Location ID: ${locationId}`);
   if (locationId) {
-    return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${locationId}`)
+    //showLoader(true);
+    return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories?parent=3=${locationId}`)
       .then(function(response) {
         return response.json();
       })
       .then(function(locations) {
+        //showLoader(false);
         return locations;
       });
   } else {
