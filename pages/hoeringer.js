@@ -11,9 +11,12 @@ export default class HoeringerPage {
   async initData() {
     let hoeringer = await hoeringService.getHoeringer();
     let categories = await hoeringService.getLocations();
-    console.log(categories);
+    let categoriesStatus = await hoeringService.getStatus();
+    let categoriesType = await hoeringService.getType();
     this.appendHoeringer(hoeringer);
     this.appendLocations(categories)
+    this.appendStatus(categoriesStatus)
+    this.appendType(categoriesType)
   }
 
   appendHoeringer(hoeringer) {
@@ -63,9 +66,11 @@ export default class HoeringerPage {
   }
 
 
+  //------------------område filtrering fuction()----------------
+
   async filterByLocation(locationId) {
     console.log(locationId);
-    let locations = await hoeringService.locationSelected(locationId);
+    let locations = await hoeringService.categorySelected(locationId);
     console.log(locations);
     this.appendHoeringer(locations);
   }
@@ -83,6 +88,62 @@ export default class HoeringerPage {
     document.querySelector('#select-district').innerHTML += htmlTemplate;
   }
 
+  //------------------status filtrering fuction()----------------
+
+  async filterByStatus(locationId) {
+    console.log(locationId);
+    let status = await hoeringService.categorySelected(locationId);
+    console.log(status);
+    this.appendHoeringer(status);
+  }
+
+  // append all genres as select options (dropdown)
+  appendStatus(districts) {
+    console.log(districts);
+    let htmlTemplate = "";
+    for (let district of districts) {
+      htmlTemplate += `
+      <option value="${district.id}">${district.name}</option>
+    `;
+    }
+
+    document.querySelector('#select-status').innerHTML += htmlTemplate;
+  }
+
+   // search functionality
+   search(value) {
+    console.log(value);
+   let searchQuery = value.toLowerCase();
+   let filteredHoeringer = [];
+   for (let hoering of hoeringer) {
+     let title = hoering.title.rendered.toLowerCase();
+     if (title.includes(searchQuery)) {
+       filteredHoeringer.push(hoering);
+     }
+   }
+   console.log(filteredHoeringer);
+   this.appendHoeringer(filteredHoeringer);
+  }
+  
+   //------------------Høringstype filtrering fuction()----------------
+
+   async filterByType(locationId) {
+    let status = await hoeringService.categorySelected(locationId);
+    this.appendHoeringer(status);
+  }
+
+  // append all genres as select options (dropdown)
+  appendType(districts) {
+    console.log(districts);
+    let htmlTemplate = "";
+    for (let district of districts) {
+      htmlTemplate += `
+      <option value="${district.id}">${district.name}</option>
+    `;
+    }
+
+    document.querySelector('#select-type').innerHTML += htmlTemplate;
+  }
 
   // gets the featured image url
   getFeaturedImageUrl(hoering) {
@@ -95,9 +156,10 @@ export default class HoeringerPage {
 
     // gets the featured name of område
     getFeaturedName(hoering) {
+      console.log(hoering);
       let name = "";
       if (hoering._embedded['wp:term']) {
-        name = hoering._embedded['wp:term'][0][0].name;
+        name = hoering._embedded['wp:term'][0][1].name;
       }
       return name;
     }
@@ -130,9 +192,6 @@ export default class HoeringerPage {
 
 
 
-
-
-<!------------------ Først forsøg på dropdown filtrering (VIRKER IKKE) --------------->
        <!------------------ Tab menu mobil ---------------->
          <!-- Tab links -->
          <div id="tab_mobile" class="tab">
@@ -147,37 +206,30 @@ export default class HoeringerPage {
             <!-- Modal content -->
             <div class="modal-content">
              
-            <!-------- Område ---------->
+            <!-------- Område filtrering ---------->
             <div class="filtrering-wrap">
             <h4>Område</h4>
-            <select id="select-district" class="filtrering-mobile" name="districs" onchange="locationSelected(this.value)">
+            <select id="select-district" class="filtrering-mobile" name="districs" onchange="categorySelected(this.value)">
              <option value="">Vælg områder</option>
            </select>
            </div>
        
-          <!-------- Status ---------->
+          <!-------- Status filtrering ---------->
           <div class="filtrering-wrap">
           <h4>Status</h4>
-          <select id="select-status" name="districs" onchange="statusSelected(this.value)">
+          <select id="select-status" name="districs" onchange="categorySelected(this.value)">
            <option value="">Vælg status</option>
          </select>
          </div>
        
-       <!-------- Høringstype ---------->
+       <!-------- Høringstype filtrering ---------->
        <div class="filtrering-wrap">
        <h4>Høringstype</h4>
-       <select id="select-type" name="districs" onchange="typeSelected(this.value)">
+       <select id="select-type" name="districs" onchange="categorySelected(this.value)">
         <option value="">Vælg Høringstype</option>
       </select>
       </div>
-       
-       <!-------- Periode ---------->
-       <div class="filtrering-wrap">
-       <h4>Periode</h4>
-       <select id="select-periode" name="districs" onchange="periodeSelected(this.value)">
-        <option value="">Vælg Periode</option>
-      </select>
-      </div>
+      
        
           </div>
               </div>
@@ -200,11 +252,13 @@ export default class HoeringerPage {
       <div id="filtrering_desktop">
       <div class="modal-location">
       <h4>Periode</h4>
-      <select id="select-district" name="districs" onchange="locationSelected(this.value)">
+      <select id="select-district" name="districs" onchange="categorySelected(this.value)">
        <option value="">Vælg områder</option>
      </select>
      </div>
      </div>
+
+     <input type="search" placeholder="Search" onkeyup="search(this.value)">
 
        <div id="grid-hoeringer" class="grid-container tabcontent"></div>
        
@@ -215,5 +269,6 @@ export default class HoeringerPage {
         </section>
       `;
   }
+
 
 }

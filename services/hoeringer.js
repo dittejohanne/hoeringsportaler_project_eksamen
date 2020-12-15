@@ -14,20 +14,6 @@ class HoeringService {
       });
   }
 
-  //   // search functionality
-  // search(value) {
-  //   let searchQuery = value.toLowerCase();
-  //   let filteredMovies = [];
-  //   for (let movie of movies) {
-  //     let title = movie.title.rendered.toLowerCase();
-  //     if (title.includes(searchQuery)) {
-  //       filteredMovies.push(movie);
-  //     }
-  //   }
-  //   console.log(filteredMovies);
-  //   appendMovies(filteredMovies);
-  // }
-
   // fetch all Locaitions / categories from WP
   async getLocations() {
     return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=3')
@@ -40,8 +26,30 @@ class HoeringService {
       });
   }
 
+  async getStatus() {
+    return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=10')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (categoriesStatus) {
+        console.log(categoriesStatus);
+        return categoriesStatus;
+      });
+  }
+
+  async getType() {
+    return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=7')
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (categoriesType) {
+        console.log(categoriesType);
+        return categoriesType;
+      });
+  }
+
   // category selected event - fetch hoeringer by selected category
-  async locationSelected(locationId) {
+  async categorySelected(locationId) {
     console.log(`Location ID: ${locationId}`);
     if (locationId) {
       //showLoader(true);
@@ -57,7 +65,6 @@ class HoeringService {
       // create feedback
     }
   }
-
 
   openTabs(evt, tabName) {
     // Declare all variables
