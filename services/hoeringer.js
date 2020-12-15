@@ -93,6 +93,19 @@ class HoeringService {
     document.getElementById("defaultOpen").click();
   }
 
+   // search functionality
+ search(value) {
+  console.log(value);
+ let searchQuery = value.toLowerCase();
+ let filteredHoeringer = [];
+ for (let hoering of hoeringer) {
+   let title = hoering.title.rendered.toLowerCase();
+   if (title.includes(searchQuery)) {
+     filteredHoeringer.push(hoering);
+   }
+ }
+}
+
   // // Triggers button "Hvad siger du?""
   modalOpen() {
     // Get the modal

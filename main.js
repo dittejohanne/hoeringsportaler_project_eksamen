@@ -28,4 +28,5 @@ window.modalOpen = () => hoeringService.modalOpen();
 window.categorySelected = (value) => hoeringerPage.filterByLocation(value);
 window.cateogrySelected = (value) => hoeringerPage.filterByStatus(value);
 window.cateogrySelected = (value) => hoeringerPage.filterByType(value);
+window.search = (value) => hoeringerPage.filterBySearch(value);
 // window.modalClose = () => hoeringService.modalClose();

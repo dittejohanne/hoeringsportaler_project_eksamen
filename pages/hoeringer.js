@@ -110,21 +110,11 @@ export default class HoeringerPage {
     document.querySelector('#select-status').innerHTML += htmlTemplate;
   }
 
-   // search functionality
-   search(value) {
-    console.log(value);
-   let searchQuery = value.toLowerCase();
-   let filteredHoeringer = [];
-   for (let hoering of hoeringer) {
-     let title = hoering.title.rendered.toLowerCase();
-     if (title.includes(searchQuery)) {
-       filteredHoeringer.push(hoering);
-     }
-   }
-   console.log(filteredHoeringer);
-   this.appendHoeringer(filteredHoeringer);
+  async filterBySearch(value) {
+    let search = await hoeringService.search(value);
+    this.appendHoeringer(search);
   }
-  
+
    //------------------Høringstype filtrering fuction()----------------
 
    async filterByType(locationId) {
