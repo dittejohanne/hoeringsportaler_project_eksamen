@@ -46,11 +46,11 @@ export default class HoeringerPage {
         <div id="typesTextBoks">
         <div id="location">
         <img src="../images/location_icon.svg">
-        <h3>${hoering.acf.omrade}</h3>
+        <h3>${this.getFeaturedName(hoering)}</h3>
         </div>
         <div id="hearing">
         <img src="../images/hearing.svg">
-        <h3>${hoering.acf.horingstype}</h3>
+        <h3>${this.getFeaturedType(hoering)}</h3>
         </div>
         </div>
         
@@ -71,32 +71,48 @@ export default class HoeringerPage {
   }
 
   // append all genres as select options (dropdown)
-appendLocations(districts) {
-  console.log(districts);
-  let htmlTemplate = "";
-  for (let district of districts) {
-    htmlTemplate += `
+  appendLocations(districts) {
+    console.log(districts);
+    let htmlTemplate = "";
+    for (let district of districts) {
+      htmlTemplate += `
       <option value="${district.id}">${district.name}</option>
     `;
-  }
-
-  document.querySelector('#select-district').innerHTML += htmlTemplate;
-}
-
-
-
-
-    // gets the featured image url
-    getFeaturedImageUrl(hoering) {
-      let imageUrl = "";
-      if (hoering._embedded['wp:featuredmedia']) {
-        imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url;
-      }
-      return imageUrl;
     }
 
-    template() {
-      document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
+    document.querySelector('#select-district').innerHTML += htmlTemplate;
+  }
+
+
+  // gets the featured image url
+  getFeaturedImageUrl(hoering) {
+    let imageUrl = "";
+    if (hoering._embedded['wp:featuredmedia']) {
+      imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url;
+    }
+    return imageUrl;
+  }
+
+    // gets the featured name of område
+    getFeaturedName(hoering) {
+      let name = "";
+      if (hoering._embedded['wp:term']) {
+        name = hoering._embedded['wp:term'][0][0].name;
+      }
+      return name;
+    }
+
+      // gets the featured name of område
+      getFeaturedType(hoering) {
+        let type = "";
+        if (hoering._embedded['wp:term']) {
+          type = hoering._embedded['wp:term'][0][3].name;
+        }
+        return type;
+      }
+
+  template() {
+    document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
       <section id="hoeringer" class="page">
       <div id="header_img">
        <img src="../images/nyhavn-crop.png">
@@ -132,89 +148,43 @@ appendLocations(districts) {
             <div class="modal-content">
              
             <!-------- Område ---------->
-         <div class="modal-location">
-         <h4>Område</h4>
-         <div class="dropdown">
-         <button onclick="myFunction()" class="dropbtn">Vælg områder</button>
-         <div id="myDropdown" class="dropdown-content">
-           <input type="text" placeholder="Search.." class="myInput" onkeyup="filterFunction()">
-           <a href="#about">About</a>
-           <a href="#base">Base</a>
-           <a href="#blog">Blog</a>
-           <a href="#contact">Contact</a>
-           <a href="#custom">Custom</a>
-           <a href="#support">Support</a>
-           <a href="#tools">Tools</a>
-         </div>
-         </div>
-         </div>
+            <div class="filtrering-wrap">
+            <h4>Område</h4>
+            <select id="select-district" class="filtrering-mobile" name="districs" onchange="locationSelected(this.value)">
+             <option value="">Vælg områder</option>
+           </select>
+           </div>
        
           <!-------- Status ---------->
-          <div id="modal-status">
+          <div class="filtrering-wrap">
           <h4>Status</h4>
-          <label class="container">Alle
-          <input type="checkbox" checked="checked">
-          <span class="checkmark"></span>
-        </label>
-        
-        <label class="container">Kommende
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-        
-        <label class="container">Aktive
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-        
-        <label class="container">Afsluttede
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-        </div>  
+          <select id="select-status" name="districs" onchange="statusSelected(this.value)">
+           <option value="">Vælg status</option>
+         </select>
+         </div>
        
        <!-------- Høringstype ---------->
-       <div id="modal-hoeringstype">
+       <div class="filtrering-wrap">
        <h4>Høringstype</h4>
-       <label class="container">Alle
-       <input type="checkbox" checked="checked">
-       <span class="checkmark"></span>
-       </label>
-       
-       <label class="container">Lokalplan
-       <input type="checkbox">
-       <span class="checkmark"></span>
-       </label>
-       
-       <label class="container">Kommunalplan
-       <input type="checkbox">
-       <span class="checkmark"></span>
-       </label>
-       
-       <label class="container">Dagtilbud og skole
-       <input type="checkbox">
-       <span class="checkmark"></span>
-       </label>
-       
-       <label class="container">Byggesager 
-       <input type="checkbox">
-       <span class="checkmark"></span>
-       </label>
-       
-       <label class="container">Andet
-       <input type="checkbox">
-       <span class="checkmark"></span>
-       </label>
-       </div>
+       <select id="select-type" name="districs" onchange="typeSelected(this.value)">
+        <option value="">Vælg Høringstype</option>
+      </select>
+      </div>
        
        <!-------- Periode ---------->
-       <input readonly type="text" id="example" placeholder="">
+       <div class="filtrering-wrap">
+       <h4>Periode</h4>
+       <select id="select-periode" name="districs" onchange="periodeSelected(this.value)">
+        <option value="">Vælg Periode</option>
+      </select>
+      </div>
        
           </div>
               </div>
 
 
 
+<!------------------ DESKTOP ---------------->
 
          <!------------------ Tab menu desktop ---------------->
          <!-- Tab links -->
@@ -226,89 +196,15 @@ appendLocations(districts) {
        
           <!------------ Tab content desktop -------->
 
-
-<div id="filtrering_desktop">
-<div class="modal-location">
-         <h4>Område</h4>
-         <div class="dropdown">
-         <button onclick="myFunctionFirst()" class="dropbtn">Vælg områder</button>
-         <div id="myDropdownFirst" class="dropdown-content">
-           <input type="text" placeholder="Search.." class="myInput" onkeyup="filterFunctionFirst()">
-           <a href="#about">About</a>
-           <a href="#base">Base</a>
-           <a href="#blog">Blog</a>
-           <a href="#contact">Contact</a>
-           <a href="#custom">Custom</a>
-           <a href="#support">Support</a>
-           <a href="#tools">Tools</a>
-         </div>
-         </div>
-         </div>
-     
-        <!-------- Status ---------->
-        <div class="modal-location">
-         <h4>Status</h4>
-         <div class="dropdown">
-         <button onclick="myFunction()" class="dropbtn">Vælg status</button>
-         <div id="myDropdown" class="dropdown-content">
-           <input type="text" placeholder="Search.." onkeyup="filterFunction()">
-           <a href="#about">About</a>
-           <a href="#base">Base</a>
-           <a href="#blog">Blog</a>
-           <a href="#contact">Contact</a>
-           <a href="#custom">Custom</a>
-           <a href="#support">Support</a>
-           <a href="#tools">Tools</a>
-         </div>
-         </div>
-         </div>
-     
-     <!-------- Høringstype ---------->
-     <div class="modal-location">
-         <h4>Høringstype</h4>
-         <div class="dropdown">
-         <button onclick="myFunction()" class="dropbtn">Vælg høringstype</button>
-         <div id="myDropdown" class="dropdown-content">
-           <input type="text" placeholder="Search.." onkeyup="filterFunction()">
-           <a href="#about">About</a>
-           <a href="#base">Base</a>
-           <a href="#blog">Blog</a>
-           <a href="#contact">Contact</a>
-           <a href="#custom">Custom</a>
-           <a href="#support">Support</a>
-           <a href="#tools">Tools</a>
-         </div>
-         </div>
-         </div>
-     
-     <!-------- Periode ---------->
-     <div class="modal-location">
-     <h4>Periode</h4>
-     <div class="dropdown">
-     <button onclick="myFunction()" class="dropbtn">Vælg periode</button>
-     <div id="myDropdown" class="dropdown-content">
-       <input type="text" placeholder="Search.." onkeyup="filterFunction()">
-       <a href="#about">About</a>
-       <a href="#base">Base</a>
-       <a href="#blog">Blog</a>
-       <a href="#contact">Contact</a>
-       <a href="#custom">Custom</a>
-       <a href="#support">Support</a>
-       <a href="#tools">Tools</a>
-     </div>
-     </div>
-     </div>
-     </div>
-
-     <!------------------ Først forsøg på dropdown filtrering (VIRKER IKKE) SLUT --------------->
-     
-
-      <!------------ områder dropdown ----------->
-
-     <select id="select-district" name="districs" onchange="locationSelected(this.value)">
-       <option value="">Alle områder</option>
+      <!---- områder dropdown ----->
+      <div id="filtrering_desktop">
+      <div class="modal-location">
+      <h4>Periode</h4>
+      <select id="select-district" name="districs" onchange="locationSelected(this.value)">
+       <option value="">Vælg områder</option>
      </select>
-     <section id="hoeringer-by-category-container" class="grid-container"></section>
+     </div>
+     </div>
 
        <div id="grid-hoeringer" class="grid-container tabcontent"></div>
        
@@ -318,6 +214,6 @@ appendLocations(districts) {
        
         </section>
       `;
-    } 
-
   }
+
+}

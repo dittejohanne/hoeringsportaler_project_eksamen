@@ -20,6 +20,8 @@ window.pageChange = () => spaService.pageChange();
 window.burgerMenu = () => navService.burgerMenu();
 window.closeBurger = () => navService.closeBurger();
 window.getFeaturedImageUrl = (hoering) => hoeringerService.getFeaturedImageUrl(hoering);
+window.getFeaturedName = (hoering) => hoeringerService.getFeaturedName(hoering);
+window.getFeaturedType = (hoering) => hoeringerService.getFeaturedType(hoering);
 window.openTabs = (evt, tabName) => hoeringService.openTabs(evt, tabName);
 window.defaultOpen = () => hoeringService.defaultOpen();
 window.modalOpen = () => hoeringService.modalOpen();
