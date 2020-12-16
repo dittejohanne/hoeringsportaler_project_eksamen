@@ -574,6 +574,11 @@ p {
 padding: 7% 65% 7% 3%;
 }
 
+#timePeriod {
+  display: inline;
+  margin: 0 5%;
+}
+
 
 /* ---------- styling høringer ---------- */
 /* Grid container */

@@ -124,9 +124,12 @@ export default class HoeringerPage {
 
           <!-------- Periode filtrering ---------->
 
-          <article id="timePeriod"><p>Periode</p>
+         
+          <div class="filtrering-wrap">
+       <h4>Årstal</h4>
                 
           <select id="fromYear" value="2015" onchange="generateTable()">
+          <option>Vælg årstal</option>
           <option>2015</option>
           <option>2016</option>
           <option>2017</option>
@@ -134,17 +137,7 @@ export default class HoeringerPage {
           <option>2019</option>
           </select>
 
-          <p>Til</p>
-
-          <select id="toYear" value="2019" onchange="generateTable()">
-          <option >2015</option>
-          <option >2016</option>
-          <option >2017</option>
-          <option >2018</option>
-          <option selected>2019</option>
-          </select>
-
-          </article>
+          </div>
       
        
           </div>
