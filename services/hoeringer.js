@@ -1,10 +1,9 @@
 import loaderService from "./loader.js";
 class HoeringService {
   constructor() {
+    this.hoeringer = [];
 
   }
-
-  hoeringer = [];
 
   async getHoeringer() {
     return await fetch(
@@ -14,6 +13,7 @@ class HoeringService {
         return response.json();
       })
       .then((json) => {
+        this.hoeringer.json; //saves json in global variable
         return json;
       });
   }
@@ -102,12 +102,13 @@ class HoeringService {
   console.log(value);
  let searchQuery = value.toLowerCase();
  let filteredHoeringer = [];
- for (let hoering of hoeringer) {
+ for (let hoering of this.hoeringer) {
    let title = hoering.title.rendered.toLowerCase();
    if (title.includes(searchQuery)) {
      filteredHoeringer.push(hoering);
    }
  }
+ return filteredHoeringer
 }
 
   // // Triggers button "Hvad siger du?""
