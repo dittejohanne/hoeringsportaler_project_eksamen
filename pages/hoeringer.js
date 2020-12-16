@@ -65,104 +65,6 @@ export default class HoeringerPage {
     document.querySelector("#grid-hoeringer").innerHTML = template;
   }
 
-
-  //------------------område filtrering fuction()----------------
-
-  async filterByLocation(locationId) {
-    console.log(locationId);
-    let locations = await hoeringService.categorySelected(locationId);
-    console.log(locations);
-    this.appendHoeringer(locations);
-  }
-
-  // append all genres as select options (dropdown)
-  appendLocations(districts) {
-    console.log(districts);
-    let htmlTemplate = "";
-    for (let district of districts) {
-      htmlTemplate += `
-      <option value="${district.id}">${district.name}</option>
-    `;
-    }
-
-    document.querySelector('#select-district').innerHTML += htmlTemplate;
-  }
-
-  //------------------status filtrering fuction()----------------
-
-  async filterByStatus(locationId) {
-    console.log(locationId);
-    let status = await hoeringService.categorySelected(locationId);
-    console.log(status);
-    this.appendHoeringer(status);
-  }
-
-  // append all genres as select options (dropdown)
-  appendStatus(districts) {
-    console.log(districts);
-    let htmlTemplate = "";
-    for (let district of districts) {
-      htmlTemplate += `
-      <option value="${district.id}">${district.name}</option>
-    `;
-    }
-
-    document.querySelector('#select-status').innerHTML += htmlTemplate;
-  }
-
-  async filterBySearch(value) {
-    let search = await hoeringService.search(value);
-    this.appendHoeringer(search);
-  }
-
-   //------------------Høringstype filtrering fuction()----------------
-
-   async filterByType(locationId) {
-    let status = await hoeringService.categorySelected(locationId);
-    this.appendHoeringer(status);
-  }
-
-  // append all genres as select options (dropdown)
-  appendType(districts) {
-    console.log(districts);
-    let htmlTemplate = "";
-    for (let district of districts) {
-      htmlTemplate += `
-      <option value="${district.id}">${district.name}</option>
-    `;
-    }
-
-    document.querySelector('#select-type').innerHTML += htmlTemplate;
-  }
-
-  // gets the featured image url
-  getFeaturedImageUrl(hoering) {
-    let imageUrl = "";
-    if (hoering._embedded['wp:featuredmedia']) {
-      imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url;
-    }
-    return imageUrl;
-  }
-
-    // gets the featured name of område
-    getFeaturedName(hoering) {
-      console.log(hoering);
-      let name = "";
-      if (hoering._embedded['wp:term']) {
-        name = hoering._embedded['wp:term'][0][1].name;
-      }
-      return name;
-    }
-
-      // gets the featured name of område
-      getFeaturedType(hoering) {
-        let type = "";
-        if (hoering._embedded['wp:term']) {
-          type = hoering._embedded['wp:term'][0][3].name;
-        }
-        return type;
-      }
-
   template() {
     document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
       <section id="hoeringer" class="page">
@@ -192,7 +94,7 @@ export default class HoeringerPage {
 
             <!------------ Tab content mobile -------->
               
-            <<div id="myModal" class="modal">
+            <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
              
@@ -248,10 +150,6 @@ export default class HoeringerPage {
           </div>
               </div>
 
-             
-
-
-
 <!------------------ DESKTOP ---------------->
 
          <!------------------ Tab menu desktop ---------------->
@@ -274,7 +172,7 @@ export default class HoeringerPage {
      </div>
      </div>
 
-     <input type="search" placeholder="Search" onkeyup="search(this.value)">
+     <input type="search" class="search" placeholder="Search" onkeyup="search(this.value)">
 
        <div id="grid-hoeringer" class="grid-container tabcontent"></div>
        
@@ -285,6 +183,105 @@ export default class HoeringerPage {
         </section>
       `;
   }
+
+//-----------------------------JS FUNCTIONS()------------------------
+
+  //-------område filtrering fuction()--------
+
+  async filterByLocation(locationId) {
+    console.log(locationId);
+    let locations = await hoeringService.categorySelected(locationId);
+    console.log(locations);
+    this.appendHoeringer(locations);
+  }
+
+  // append all genres as select options (dropdown)
+  appendLocations(districts) {
+    console.log(districts);
+    let htmlTemplate = "";
+    for (let district of districts) {
+      htmlTemplate += `
+      <option value="${district.id}">${district.name}</option>
+    `;
+    }
+
+    document.querySelector('#select-district').innerHTML += htmlTemplate;
+  }
+
+  //------------------status filtrering fuction()----------------
+
+  async filterByStatus(locationId) {
+    console.log(locationId);
+    let status = await hoeringService.categorySelected(locationId);
+    console.log(status);
+    this.appendHoeringer(status);
+  }
+
+  // append all genres as select options (dropdown)
+  appendStatus(districts) {
+    console.log(districts);
+    let htmlTemplate = "";
+    for (let district of districts) {
+      htmlTemplate += `
+      <option value="${district.id}">${district.name}</option>
+    `;
+    }
+
+    document.querySelector('#select-status').innerHTML += htmlTemplate;
+  }
+
+  async filterBySearch(value) {
+    let search = hoeringService.search(value);
+    this.appendHoeringer(search);
+  }
+
+   //------------------Høringstype filtrering fuction()----------------
+
+   async filterByType(locationId) {
+    let status = await hoeringService.categorySelected(locationId);
+    this.appendHoeringer(status);
+  }
+
+  // append all genres as select options (dropdown)
+  appendType(districts) {
+    console.log(districts);
+    let htmlTemplate = "";
+    for (let district of districts) {
+      htmlTemplate += `
+      <option value="${district.id}">${district.name}</option>
+    `;
+    }
+
+    document.querySelector('#select-type').innerHTML += htmlTemplate;
+  }
+
+  // gets the featured image url
+  getFeaturedImageUrl(hoering) {
+    let imageUrl = "";
+    if (hoering._embedded['wp:featuredmedia']) {
+      imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url;
+    }
+    return imageUrl;
+  }
+
+    // gets the featured name of område
+    getFeaturedName(hoering) {
+      console.log(hoering);
+      let name = "";
+      if (hoering._embedded['wp:term']) {
+        name = hoering._embedded['wp:term'][0][1].name;
+      }
+      return name;
+    }
+
+      // gets the featured name of område
+      getFeaturedType(hoering) {
+        let type = "";
+        if (hoering._embedded['wp:term']) {
+          type = hoering._embedded['wp:term'][0][3].name;
+        }
+        return type;
+      }
 
 
 }

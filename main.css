@@ -548,6 +548,21 @@ p {
   }
 }
 
+/* ---------- styling search mobil ---------- */
+.search {
+  margin-top: 3%;
+  padding: 4% 58% 4% 0%;
+  border: 2px solid var(--blue);
+}
+
+.search::placeholder{
+  color: var(--blue);
+  padding-left: 13%;
+}
+
+.search::-webkit-search-cancel-button{
+  margin-right:-190px;
+}
 /* ---------- styling filtrering mobil ---------- */
 
 .filtrering-wrap {

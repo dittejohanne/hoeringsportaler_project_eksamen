@@ -108,7 +108,7 @@ class HoeringService {
      filteredHoeringer.push(hoering);
    }
  }
- return filteredHoeringer
+ return filteredHoeringer;
 }
 
   // // Triggers button "Hvad siger du?""
