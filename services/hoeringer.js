@@ -18,6 +18,20 @@ class HoeringService {
       });
   }
 
+    // search functionality
+ search(value) {
+  console.log(value);
+ let searchQuery = value.toLowerCase();
+ let filteredHoeringer = [];
+ for (let hoering of this.hoeringer) {
+   let title = hoering.title.rendered.toLowerCase();
+   if (title.includes(searchQuery)) {
+     filteredHoeringer.push(hoering);
+   }
+ }
+ return filteredHoeringer;
+}
+
   // fetch all Locaitions / categories from WP
   async getLocations() {
     return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=3')
@@ -97,20 +111,6 @@ class HoeringService {
     document.getElementById("defaultOpen").click();
   }
 
-   // search functionality
- search(value) {
-  console.log(value);
- let searchQuery = value.toLowerCase();
- let filteredHoeringer = [];
- for (let hoering of this.hoeringer) {
-   let title = hoering.title.rendered.toLowerCase();
-   if (title.includes(searchQuery)) {
-     filteredHoeringer.push(hoering);
-   }
- }
- return filteredHoeringer;
-}
-
   // // Triggers button "Hvad siger du?""
   modalOpen() {
     // Get the modal
@@ -156,12 +156,11 @@ class HoeringService {
 // }
 
 
-  // // When the user clicks on <span> (x), close the modal
-  // modalClose() {
-  //   let burger = document.querySelector("#Filtrer);
-  //   burger.style.display = "none";
-  // }
-
+  // When the user clicks on <span> (x), close the modal
+  modalClose() {
+    let modal = document.querySelector(".modal");
+    modal.style.display = "none";
+  }
   // // When the user clicks anywhere outside of the modal, close it
   // window.onclick = function(event) {
   //   if (event.target == modal) {

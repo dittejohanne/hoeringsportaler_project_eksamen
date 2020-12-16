@@ -13,7 +13,7 @@ export default class HoeringerPage {
     let categories = await hoeringService.getLocations();
     let categoriesStatus = await hoeringService.getStatus();
     let categoriesType = await hoeringService.getType();
-    this.appendHoeringer(hoeringer);
+    this.appendHoeringer(hoeringer)
     this.appendLocations(categories)
     this.appendStatus(categoriesStatus)
     this.appendType(categoriesType)
@@ -123,8 +123,6 @@ export default class HoeringerPage {
       </div>
 
           <!-------- Periode filtrering ---------->
-
-         
           <div class="filtrering-wrap">
        <h4>Årstal</h4>
                 
@@ -139,6 +137,14 @@ export default class HoeringerPage {
 
           </div>
       
+          <!--------Luk og annuller knapper ---------->
+          <button class="close" onclick="modalClose()">
+         OK
+          </button>
+
+          <button class="close" id="annuller" >
+        Annullér
+          </button>
        
           </div>
               </div>
@@ -178,6 +184,7 @@ export default class HoeringerPage {
   }
 
 //-----------------------------JS FUNCTIONS()------------------------
+
 
   //-------område filtrering fuction()--------
 
@@ -262,16 +269,17 @@ export default class HoeringerPage {
       console.log(hoering);
       let name = "";
       if (hoering._embedded['wp:term']) {
-        name = hoering._embedded['wp:term'][0][1].name;
+        name = hoering._embedded['wp:term'][0][0].name;
       }
       return name;
     }
 
       // gets the featured name of område
       getFeaturedType(hoering) {
+        console.log(hoering);
         let type = "";
         if (hoering._embedded['wp:term']) {
-          type = hoering._embedded['wp:term'][0][3].name;
+          type = hoering._embedded['wp:term'][0][5].name;
         }
         return type;
       }

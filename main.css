@@ -469,16 +469,24 @@ p {
 /* The Close Button */
 .close {
   color: white;
-  float: right;
-  font-size: 28px;
+  margin-top: 20%;
+  font-size: 1em;
   font-weight: bold;
+  background-color: var(--blue);
+  padding: 3% 35%;
 }
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: var(--blue);
   text-decoration: none;
   cursor: pointer;
+}
+
+#annuller {
+  background-color: #cccccc;
+  padding: 3% 28.5%;
+  margin-top: 3%;
 }
 
 .modal-wrap {
