@@ -1,6 +1,10 @@
 import loaderService from "./loader.js";
 class HoeringService {
-  constructor() {}
+  constructor() {
+
+  }
+
+  hoeringer = [];
 
   async getHoeringer() {
     return await fetch(
@@ -116,22 +120,39 @@ class HoeringService {
       x.style.display = "block";
     }
   }
+  
+//   generateTable() {
 
-  filterFunctionFirst() {
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdownFirst");
-    a = div.getElementsByTagName("a");
-    for (i = 0; i < a.length; i++) {
-      txtValue = a[i].textContent || a[i].innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        a[i].style.display = "";
-      } else {
-        a[i].style.display = "none";
-      }
-    }
-  }
+//     let from = document.querySelector('#fromYear'); //makes variable: "from" by Id #fromYear
+//     let to = document.querySelector('#toYear'); //makes variable: "to" by Id #toYear
+
+//     // Change labes of chart
+//     chartService.chart.options = {
+
+//         scales: {
+//             xAxes: [{
+//                 ticks: {
+//                     min: from.value,
+//                     max: to.value
+//                 }
+//             }]
+
+//         }
+//     };
+//     chartService.chart.update();
+
+
+
+//     let htmlTemplate = /*html*/ `
+// <table id="graphTable">
+// <tbody>
+// <tr id="thFirst">
+// <th></th>
+// <th id="fromYearTable">${from.value}</th> <!-- Gets the value of the "from" selectbox -->
+// <th id="toYearTable">${to.value}</th> <!-- Gets the value of the "to" selectbox -->
+// </tr>`;
+
+// }
 
 
   // // When the user clicks on <span> (x), close the modal

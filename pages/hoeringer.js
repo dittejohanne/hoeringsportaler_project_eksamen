@@ -219,10 +219,36 @@ export default class HoeringerPage {
         <option value="">Vælg Høringstype</option>
       </select>
       </div>
+
+          <!-------- Periode filtrering ---------->
+
+          <article id="timePeriod"><p>Periode</p>
+                
+          <select id="fromYear" value="2015" onchange="generateTable()">
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          </select>
+
+          <p>Til</p>
+
+          <select id="toYear" value="2019" onchange="generateTable()">
+          <option >2015</option>
+          <option >2016</option>
+          <option >2017</option>
+          <option >2018</option>
+          <option selected>2019</option>
+          </select>
+
+          </article>
       
        
           </div>
               </div>
+
+             
 
 
 
