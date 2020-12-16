@@ -13,7 +13,7 @@ class HoeringService {
         return response.json();
       })
       .then((json) => {
-        this.hoeringer.json; //saves json in global variable
+        this.hoeringer = json; //saves json data in global variable
         return json;
       });
   }

@@ -274,7 +274,7 @@ export default class HoeringerPage {
       return name;
     }
 
-      // gets the featured name of område
+      // gets the featured name of høringstyper
       getFeaturedType(hoering) {
         console.log(hoering);
         let type = "";
