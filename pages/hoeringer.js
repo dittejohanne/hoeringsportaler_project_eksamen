@@ -101,7 +101,7 @@ export default class HoeringerPage {
             <!-------- Område filtrering ---------->
             <div class="filtrering-wrap">
             <h4>Område</h4>
-            <select id="select-district" class="filtrering-mobile" name="districs" onchange="categorySelected(this.value)">
+            <select class="select-district" class="filtrering-mobile" name="districs" onchange="categorySelected(this.value)">
              <option value="">Vælg områder</option>
            </select>
            </div>
@@ -109,7 +109,7 @@ export default class HoeringerPage {
           <!-------- Status filtrering ---------->
           <div class="filtrering-wrap">
           <h4>Status</h4>
-          <select id="select-status" name="districs" onchange="categorySelected(this.value)">
+          <select class="select-status" name="districs" onchange="categorySelected(this.value)">
            <option value="">Vælg status</option>
          </select>
          </div>
@@ -117,7 +117,7 @@ export default class HoeringerPage {
        <!-------- Høringstype filtrering ---------->
        <div class="filtrering-wrap">
        <h4>Høringstype</h4>
-       <select id="select-type" name="districs" onchange="categorySelected(this.value)">
+       <select class="select-type" name="districs" onchange="categorySelected(this.value)">
         <option value="">Vælg Høringstype</option>
       </select>
       </div>
@@ -151,6 +151,7 @@ export default class HoeringerPage {
 
 <!------------------ DESKTOP ---------------->
 
+
          <!------------------ Tab menu desktop ---------------->
          <!-- Tab links -->
          <div class="tab" id="tab_desktop">
@@ -158,20 +159,54 @@ export default class HoeringerPage {
          <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          </div>
 
-       
+         <input type="search" class="search-desktop" placeholder="Søg i høringssager" onkeyup="search(this.value)">
+
+
           <!------------ Tab content desktop -------->
+            
+          <div id="filtrering_desktop">
+          <!-------- Område filtrering ---------->
+            <div class="filtrering-wrap">
+            <h4>Område</h4>
+            <select class="select-district-desktop" onchange="categorySelected(this.value)">
+             <option value="">Vælg områder</option>
+           </select>
+           </div>
+       
+          <!-------- Status filtrering ---------->
+          <div class="filtrering-wrap">
+          <h4>Status</h4>
+          <select class="select-status-desktop" name="districs" onchange="categorySelected(this.value)">
+           <option value="">Vælg status</option>
+         </select>
+         </div>
+       
+       <!-------- Høringstype filtrering ---------->
+       <div class="filtrering-wrap">
+       <h4>Høringstype</h4>
+       <select class="select-type-desktop" name="districs" onchange="categorySelected(this.value)">
+        <option value="">Vælg Høringstype</option>
+      </select>
+      </div>
 
-      <!---- områder dropdown ----->
-      <div id="filtrering_desktop">
-      <div class="modal-location">
-      <h4>Periode</h4>
-      <select id="select-district" name="districs" onchange="categorySelected(this.value)">
-       <option value="">Vælg områder</option>
-     </select>
-     </div>
-     </div>
+          <!-------- Periode filtrering ---------->
+          <div class="filtrering-wrap">
+       <h4>Årstal</h4>
+                
+          <select id="fromYear" value="2015" onchange="generateTable()">
+          <option>Vælg årstal</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          </select>
 
-     <input type="search" class="search" placeholder="Search" onkeyup="search(this.value)">
+          </div>
+          </div>
+
+
+     <input type="search" class="search-mobile" placeholder="Search" onkeyup="search(this.value)">
 
        <div id="grid-hoeringer" class="grid-container tabcontent"></div>
        
@@ -205,7 +240,8 @@ export default class HoeringerPage {
     `;
     }
 
-    document.querySelector('#select-district').innerHTML += htmlTemplate;
+    document.querySelector('.select-district').innerHTML += htmlTemplate;
+    document.querySelector('.select-district-desktop').innerHTML += htmlTemplate;
   }
 
   //------------------status filtrering fuction()----------------
@@ -227,12 +263,8 @@ export default class HoeringerPage {
     `;
     }
 
-    document.querySelector('#select-status').innerHTML += htmlTemplate;
-  }
-
-  async filterBySearch(value) {
-    let search = hoeringService.search(value);
-    this.appendHoeringer(search);
+    document.querySelector('.select-status').innerHTML += htmlTemplate;
+    document.querySelector('.select-status-desktop').innerHTML += htmlTemplate;
   }
 
    //------------------Høringstype filtrering fuction()----------------
@@ -252,7 +284,15 @@ export default class HoeringerPage {
     `;
     }
 
-    document.querySelector('#select-type').innerHTML += htmlTemplate;
+    document.querySelector('.select-type').innerHTML += htmlTemplate;
+    document.querySelector('.select-type-desktop').innerHTML += htmlTemplate;
+  }
+
+   //------------------ Søgefunktion ----------------
+
+  async filterBySearch(value) {
+    let search = hoeringService.search(value);
+    this.appendHoeringer(search);
   }
 
   // gets the featured image url

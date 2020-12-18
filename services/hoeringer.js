@@ -71,7 +71,7 @@ class HoeringService {
     console.log(`Location ID: ${locationId}`);
     if (locationId) {
       //showLoader(true);
-      return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${locationId}`)
+      return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories?parent=${locationId}`)
         .then(function (response) {
           return response.json();
         })
