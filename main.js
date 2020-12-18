@@ -30,4 +30,3 @@ window.cateogrySelected = (value) => hoeringerPage.filterByStatus(value);
 window.cateogrySelected = (value) => hoeringerPage.filterByType(value);
 window.search = (value) => hoeringerPage.filterBySearch(value);
 window.modalClose = () => hoeringService.modalClose();
-// window.modalClose = () => hoeringService.modalClose();

@@ -10,11 +10,11 @@ export default class HoeringerPage {
   }
   async initData() {
     let hoeringer = await hoeringService.getHoeringer();
-    let categories = await hoeringService.getLocations();
+    let categoriesLocation = await hoeringService.getLocations();
     let categoriesStatus = await hoeringService.getStatus();
     let categoriesType = await hoeringService.getType();
     this.appendHoeringer(hoeringer)
-    this.appendLocations(categories)
+    this.appendLocations(categoriesLocation)
     this.appendStatus(categoriesStatus)
     this.appendType(categoriesType)
   }
@@ -123,28 +123,12 @@ export default class HoeringerPage {
         <option value="">Vælg Høringstype</option>
       </select>
       </div>
-
-          <!-------- Periode filtrering ---------->
-          <div class="filtrering-wrap">
-       <h4>Årstal</h4>
-                
-          <select id="fromYear" value="2015" onchange="generateTable()">
-          <option>Vælg årstal</option>
-          <option>2015</option>
-          <option>2016</option>
-          <option>2017</option>
-          <option>2018</option>
-          <option>2019</option>
-          </select>
-
-          </div>
       
-          <!--------Luk og annuller knapper ---------->
+          <!--------Luk knap ---------->
           <button class="close" onclick="modalClose()">
          OK
           </button>
 
-       
           </div>
               </div>
 
@@ -188,19 +172,6 @@ export default class HoeringerPage {
         <option value="">Vælg Høringstype</option>
       </select>
       </div>
-
-          <!-------- Periode filtrering ---------->
-          <div class="filtrering-wrap">
-       <h4>Årstal</h4>
-                
-          <select id="fromYear" value="2015" onchange="generateTable()">
-          <option>Vælg årstal</option>
-          <option>2015</option>
-          <option>2016</option>
-          <option>2017</option>
-          <option>2018</option>
-          <option>2019</option>
-          </select>
 
           </div>
           </div>
@@ -246,12 +217,12 @@ export default class HoeringerPage {
 
   async filterByStatus(locationId) {
     let status = await hoeringService.categorySelected(locationId);
-    console.log(status);
     this.appendHoeringer(status);
   }
 
   // append all genres as select options (dropdown)
   appendStatus(districts) {
+    console.log(districts);
     let htmlTemplate = "";
     for (let district of districts) {
       htmlTemplate += `
@@ -287,7 +258,7 @@ export default class HoeringerPage {
    //------------------ Søgefunktion ----------------
 
   async filterBySearch(value) {
-    let search = hoeringService.search(value);
+    let search = await hoeringService.search(value);
     this.appendHoeringer(search);
   }
 

@@ -71,7 +71,7 @@ class HoeringService {
     console.log(`Location ID: ${locationId}`);
     if (locationId) {
       //showLoader(true);
-      return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories?parent=${locationId}`)
+      return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${locationId}`)
         .then(function (response) {
           return response.json();
         })
@@ -128,44 +128,6 @@ class HoeringService {
     modal.style.display = "none";
   }
   
-//   generateTable() {
-
-//     let from = document.querySelector('#fromYear'); //makes variable: "from" by Id #fromYear
-//     let to = document.querySelector('#toYear'); //makes variable: "to" by Id #toYear
-
-//     // Change labes of chart
-//     chartService.chart.options = {
-
-//         scales: {
-//             xAxes: [{
-//                 ticks: {
-//                     min: from.value,
-//                     max: to.value
-//                 }
-//             }]
-
-//         }
-//     };
-//     chartService.chart.update();
-
-
-
-//     let htmlTemplate = /*html*/ `
-// <table id="graphTable">
-// <tbody>
-// <tr id="thFirst">
-// <th></th>
-// <th id="fromYearTable">${from.value}</th> <!-- Gets the value of the "from" selectbox -->
-// <th id="toYearTable">${to.value}</th> <!-- Gets the value of the "to" selectbox -->
-// </tr>`;
-
-// }
-  // // When the user clicks anywhere outside of the modal, close it
-  // window.onclick = function(event) {
-  //   if (event.target == modal) {
-  //     modal.style.display = "none";
-  //   }
-
 
 }
 
