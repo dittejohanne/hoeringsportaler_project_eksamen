@@ -198,23 +198,25 @@ p {
   }
 }
 
+/* ---------- Borgermøder ---------- */
+.coming-soon {
+  width: 100%;
+  text-align: center;
+  margin-top: 25%;
+}
+
+.coming-soon img {
+  width: 50%;
+}
+
+.coming-soon h6 {
+  margin: 3%;
+  color: #cccccc;
+} 
 
 /* ---------- høringer ---------- */
 .flexContent {
   display: flex;
-}
-
-#manchet_desktop {
-  background-color: var(--light-brown);
-  position: absolute;
-  left: 100px;
-  top: 200px;
-  width: 40%;
-  padding: 5%;
-}
-
-#manchet_desktop h2 {
-  font-size: 2em;
 }
 
 .display_none {
@@ -244,8 +246,12 @@ p {
 
 #paddingInfo h4 {
   font-weight: 300;
-  margin-top: 30%;
+  margin: 5% 0;
 }
+#paddingInfo h3, h4, #comments {
+  margin: 20% 0;
+}
+
 
 #typesTextBoks img {
   width: 30%;
@@ -263,11 +269,6 @@ p {
   background-size: cover;
   position: relative;
   width: 100%;
-
-  /* Height untill bodyLoad */
-  height: calc(var(--vh, 1vh) * 30);
-  ;
-  cursor: pointer;
 }
 
 #hoeringContent {
@@ -602,10 +603,6 @@ padding: 7% 65% 7% 3%;
 
 @media (min-width: 600px) {
 
-  .flexContent {
-    display: block;
-  }
-
   #Kort img {
     width: 100%;
   }
@@ -623,11 +620,6 @@ padding: 7% 65% 7% 3%;
     margin: 5%;
   }
 
-  .backgroundimg {
-    height: calc(var(--vh, 1vh) * 20);
-    ;
-  }
-
   .search-mobile {
     padding: 2.5% 79% 2.5% 0%;
     margin: 5% 0;
@@ -642,11 +634,6 @@ padding: 7% 65% 7% 3%;
     grid-template-columns: 30% 30% 30%;
     margin-top: 1%;
     padding-top: 8%;
-  }
-
-  .backgroundimg {
-    height: calc(var(--vh, 1vh) * 15);
-    ;
   }
 
   .grid-container>article {
@@ -735,12 +722,19 @@ padding: 7% 65% 7% 3%;
 
   .search-desktop {
     display: block;
-    position: absolute;
-    right: 80px;
-    top: 375px;
+    position: relative;
+    left: 220px;
+    top: -80px;
     border: 5px solid white;
     border-bottom: 5px solid var(--blue);
   }
+
+  .container {
+    margin-top: 10%;
+    width: 100%;
+    height: 10%;
+    position: absolute;
+} 
 
   .search-desktop[placeholder="Søg i høringssager"] {
    font-family: cantiga-condensed, sans-serif;
@@ -795,6 +789,18 @@ padding: 7% 65% 7% 3%;
     padding: 7% 3%;
   }
 
+  #manchet_desktop {
+    background-color: var(--light-brown);
+    position: relative;
+    left: 40px;
+    top: -280px;
+    width: 40%;
+  }
+  
+  #manchet_desktop h2 {
+    font-size: 2em;
+  }
+
   #Kort img {
     width: 40%;
   }
@@ -817,8 +823,6 @@ padding: 7% 65% 7% 3%;
   .tablinks {
     width: 40%;
   }
-}
 
-@media (min-width: 992px) {
-  
+
 }

@@ -121,6 +121,12 @@ class HoeringService {
       x.style.display = "block";
     }
   }
+
+  // When the user clicks on <span> (x), close the modal
+  modalClose() {
+    let modal = document.querySelector(".modal");
+    modal.style.display = "none";
+  }
   
 //   generateTable() {
 
@@ -154,13 +160,6 @@ class HoeringService {
 // </tr>`;
 
 // }
-
-
-  // When the user clicks on <span> (x), close the modal
-  modalClose() {
-    let modal = document.querySelector(".modal");
-    modal.style.display = "none";
-  }
   // // When the user clicks anywhere outside of the modal, close it
   // window.onclick = function(event) {
   //   if (event.target == modal) {

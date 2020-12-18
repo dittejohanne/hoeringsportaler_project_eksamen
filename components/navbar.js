@@ -16,9 +16,9 @@ export default class NavBar {
        </div>
        <div id="burgercontent">
          <ul>
-           <li><a class="liAbout menuLink" href="#hoeringer">Høringer</a></li>
-           <li><a class="liMerch menuLink" href="#borgermoeder">Borgermøder</a></li>
-           <li><a class="liInfo menuLink" href="#om">Om Høringsportalen</a></li>
+           <li><a class="liAbout menuLink" href="#hoeringer" onclick="closeBurger()">Høringer</a></li>
+           <li><a class="liMerch menuLink" href="#borgermoeder" onclick="closeBurger()">Borgermøder</a></li>
+           <li><a class="liInfo menuLink" href="#om" onclick="closeBurger()">Om Høringsportalen</a></li>
          </ul>
        </div>
      </div>

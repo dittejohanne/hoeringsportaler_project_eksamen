@@ -49,11 +49,11 @@ export default class HoeringerPage {
         <div id="typesTextBoks">
         <div id="location">
         <img src="../images/location_icon.svg">
-        <h3>${this.getFeaturedName(hoering)}</h3>
+        <h3>${this.getLocation(hoering)}</h3>
         </div>
         <div id="hearing">
         <img src="../images/hearing.svg">
-        <h3>${this.getFeaturedType(hoering)}</h3>
+        <h3>${this.getHoeringType(hoering)}</h3>
         </div>
         </div>
         
@@ -77,9 +77,11 @@ export default class HoeringerPage {
        <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
        </div>
 
+       <div class="container">
        <div id="manchet_desktop">
         <h2>Hvad er en høring?</h2>
        <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
+       </div>
        </div>
 
 
@@ -142,9 +144,6 @@ export default class HoeringerPage {
          OK
           </button>
 
-          <button class="close" id="annuller" >
-        Annullér
-          </button>
        
           </div>
               </div>
@@ -159,8 +158,9 @@ export default class HoeringerPage {
          <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          </div>
 
+         <div class="container">
          <input type="search" class="search-desktop" placeholder="Søg i høringssager" onkeyup="search(this.value)">
-
+          </div>
 
           <!------------ Tab content desktop -------->
             
@@ -224,9 +224,7 @@ export default class HoeringerPage {
   //-------område filtrering fuction()--------
 
   async filterByLocation(locationId) {
-    console.log(locationId);
     let locations = await hoeringService.categorySelected(locationId);
-    console.log(locations);
     this.appendHoeringer(locations);
   }
 
@@ -247,7 +245,6 @@ export default class HoeringerPage {
   //------------------status filtrering fuction()----------------
 
   async filterByStatus(locationId) {
-    console.log(locationId);
     let status = await hoeringService.categorySelected(locationId);
     console.log(status);
     this.appendHoeringer(status);
@@ -255,7 +252,6 @@ export default class HoeringerPage {
 
   // append all genres as select options (dropdown)
   appendStatus(districts) {
-    console.log(districts);
     let htmlTemplate = "";
     for (let district of districts) {
       htmlTemplate += `
@@ -304,25 +300,35 @@ export default class HoeringerPage {
     return imageUrl;
   }
 
-    // gets the featured name of område
-    getFeaturedName(hoering) {
-      console.log(hoering);
+    // gets name of område
+    getLocation(hoering) {
+      let categories = hoering._embedded['wp:term'][0];
       let name = "";
-      if (hoering._embedded['wp:term']) {
-        name = hoering._embedded['wp:term'][0][0].name;
+      for (const category of categories) {
+        if (category.acf.parentCategory) {
+          if (category.acf.parentCategory.slug === "omraader") {
+            name = category.name;
+          }
+        }
       }
       return name;
     }
 
-      // gets the featured name of høringstyper
-      getFeaturedType(hoering) {
-        console.log(hoering);
-        let type = "";
-        if (hoering._embedded['wp:term']) {
-          type = hoering._embedded['wp:term'][0][5].name;
+      // gets sname of høringstyper
+      getHoeringType(hoering) {
+        let categories = hoering._embedded['wp:term'][0];
+        let name = "";
+        for (const category of categories) {
+          if (category.acf.parentCategory) {
+            if (category.acf.parentCategory.slug === "hoeringstype") {
+              name = category.name;
+            }
+          }
         }
-        return type;
+        return name;
       }
+
+      
 
 
 }
