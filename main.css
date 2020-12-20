@@ -419,7 +419,6 @@ padding: 7% 65% 7% 3%;
   display: none;
 }
 
-
 /* ---------- styling høringer ---------- */
 
 /*høringer posts  */
@@ -653,6 +652,7 @@ padding: 7% 65% 7% 3%;
   #hoeringContent img {
     width: 15%;
   }
+
 
    /* ---------- borgermøder og om hoeringsportal styling ---------- */
   .none {

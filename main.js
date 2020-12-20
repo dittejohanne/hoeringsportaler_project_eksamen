@@ -9,7 +9,10 @@ import hoeringService from "./services/hoeringer.js"
 //import loaderService from "./services/loader.js";
 
 // Declare and init
+let navbar = new NavBar();
+let homePage = new HomePage();
 let hoeringerPage = new HoeringerPage();
+let omPage = new OmPage();
 
 // init services
 spaService.init();
