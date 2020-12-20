@@ -102,13 +102,8 @@ openTabs(evt, tabName) {
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).style.display = "Grid";
     evt.currentTarget.className += " active";
-  }
-
-  defaultOpen() {
-    // Get the element with id="defaultOpen" and click on it 
-    document.getElementById("defaultOpen").click();
   }
 
   // // Triggers button "Filtrer" on mobile
