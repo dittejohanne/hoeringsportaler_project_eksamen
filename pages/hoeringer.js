@@ -294,7 +294,7 @@ export default class HoeringerPage {
         let name = ""; //variable with empty string
         for (const category of categories) { //loops through arrays of categories
           if (category.acf.parentCategory) { //if condition is true
-            if (category.acf.parentCategory.slug === "hoeringstype") { //if condition is true > compares on both value and type
+            if (category.acf.parentCategory.slug === "hoeringstype") { // compares on both value and type
               name = category.name; // then variable name is the categorys name
             }
           }
