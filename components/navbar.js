@@ -37,11 +37,4 @@ export default class NavBar {
         `;
   }       
 
-  // <div id="tab_mobile" class="tab">
-  // <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
-  // <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
-  // <button class="tablinks" onclick="modalOpen()">Filtrér</button>
-  // </div>
-
-
 }

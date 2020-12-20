@@ -6,7 +6,7 @@ export default class HomePage {
   template() {
     document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
       <section id="borgermoeder" class="page">
-       <h2>Borgermøder<h2> 
+       <h2 class="none">Borgermøder<h2> 
 
        <section class="coming-soon">
              <img src="../images/under-construction.svg">

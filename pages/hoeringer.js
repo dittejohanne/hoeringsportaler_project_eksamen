@@ -192,20 +192,21 @@ export default class HoeringerPage {
 //-----------------------------JS FUNCTIONS()------------------------
 
 
-  //-------område filtrering fuction()--------
+//------------------distrtcs/location filtrering fuction()----------------
 
+  //filters høringer by location
   async filterByLocation(locationId) {
-    let locations = await hoeringService.categorySelected(locationId);
-    this.appendHoeringer(locations);
+    let locations = await hoeringService.categorySelected(locationId); //variable with høringer by selected category from hoeringService.categorySelected()
+    this.appendHoeringer(locations); //append the høringer by selected category
   }
 
   // append all genres as select options (dropdown)
-  appendLocations(districts) {
+  appendLocations(districts) { //argument with districts from hoeringService.getLocations()
     console.log(districts);
-    let htmlTemplate = "";
-    for (let district of districts) {
-      htmlTemplate += `
-      <option value="${district.id}">${district.name}</option>
+    let htmlTemplate = ""; // variable with empty string
+    for (let district of districts) { //loops through districts
+      htmlTemplate += ` 
+      <option value="${district.id}">${district.name}</option>  /* shows district name in dropdown with district is as value */
     `;
     }
 
@@ -215,18 +216,19 @@ export default class HoeringerPage {
 
   //------------------status filtrering fuction()----------------
 
+  //filters høringer by status
   async filterByStatus(locationId) {
-    let status = await hoeringService.categorySelected(locationId);
-    this.appendHoeringer(status);
+    let status = await hoeringService.categorySelected(locationId); //variable with høringer by selected category from hoeringService.categorySelected()
+    this.appendHoeringer(status); //append the høringer by selected category
   }
 
   // append all genres as select options (dropdown)
-  appendStatus(districts) {
-    console.log(districts);
-    let htmlTemplate = "";
-    for (let district of districts) {
+  appendStatus(statuses) { //argument with statuses from hoeringService.getStatus()
+    console.log(statuses);
+    let htmlTemplate = ""; // variable with empty string
+    for (let status of statuses) { //loops through statuses
       htmlTemplate += `
-      <option value="${district.id}">${district.name}</option>
+      <option value="${status.id}">${status.name}</option> /* shows status name in dropdown with status id as value */
     `;
     }
 
@@ -237,17 +239,17 @@ export default class HoeringerPage {
    //------------------Høringstype filtrering fuction()----------------
 
    async filterByType(locationId) {
-    let status = await hoeringService.categorySelected(locationId);
-    this.appendHoeringer(status);
+    let status = await hoeringService.categorySelected(locationId); //variable with høringer by selected category from hoeringService.categorySelected() 
+    this.appendHoeringer(status); //append the høringer by selected category
   }
 
   // append all genres as select options (dropdown)
-  appendType(districts) {
-    console.log(districts);
-    let htmlTemplate = "";
-    for (let district of districts) {
+  appendType(types) { //argument with types from hoeringService.getType()
+    console.log(types);
+    let htmlTemplate = ""; // variable with empty string
+    for (let type of types) { //loops through types
       htmlTemplate += `
-      <option value="${district.id}">${district.name}</option>
+      <option value="${type.id}">${type.name}</option> /* shows type name in dropdown with status id as value */
     `;
     }
 
@@ -258,45 +260,46 @@ export default class HoeringerPage {
    //------------------ Søgefunktion ----------------
 
   async filterBySearch(value) {
-    let search = await hoeringService.search(value);
-    this.appendHoeringer(search);
+    let search = await hoeringService.search(value); //variable with høringer by search from hoeringService.search() 
+    this.appendHoeringer(search); //append høringer by search
   }
 
   // gets the featured image url
   getFeaturedImageUrl(hoering) {
-    let imageUrl = "";
-    if (hoering._embedded['wp:featuredmedia']) {
-      imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url;
+    let imageUrl = ""; //empty string
+    if (hoering._embedded['wp:featuredmedia']) { //condition if there is a featured media from WP
+      imageUrl = hoering._embedded['wp:featuredmedia'][0].source_url; // but the featured media from WP in imageURL string 
     }
-    return imageUrl;
+    return imageUrl; //ends function execution and specifies imageURL to be returned to the function caller and is used as backgroundimage in appendHoeringer().
   }
 
     // gets name of område
-    getLocation(hoering) {
-      let categories = hoering._embedded['wp:term'][0];
-      let name = "";
-      for (const category of categories) {
-        if (category.acf.parentCategory) {
-          if (category.acf.parentCategory.slug === "omraader") {
-            name = category.name;
+    getLocation(hoering) { 
+      console.log(hoering);
+      let categories = hoering._embedded['wp:term'][0]; // variabel with arrays 
+      let name = ""; //variable with empty string
+      for (const category of categories) { //loops through arrays of categories
+        if (category.acf.parentCategory) { //if condition is true
+          if (category.acf.parentCategory.slug === "omraader") { //if condition is true > compares on both value and type
+            name = category.name; // then variable name is the categorys name
           }
         }
       }
-      return name;
+      return name; //ends function execution and specifies name to be returned to the function caller and is used in appendHoeringer().
     }
 
-      // gets sname of høringstyper
+      // gets name of høringstyper
       getHoeringType(hoering) {
-        let categories = hoering._embedded['wp:term'][0];
-        let name = "";
-        for (const category of categories) {
-          if (category.acf.parentCategory) {
-            if (category.acf.parentCategory.slug === "hoeringstype") {
-              name = category.name;
+        let categories = hoering._embedded['wp:term'][0]; // variabel with arrays 
+        let name = ""; //variable with empty string
+        for (const category of categories) { //loops through arrays of categories
+          if (category.acf.parentCategory) { //if condition is true
+            if (category.acf.parentCategory.slug === "hoeringstype") { //if condition is true > compares on both value and type
+              name = category.name; // then variable name is the categorys name
             }
           }
         }
-        return name;
+        return name; //ends function execution and specifies name to be returned to the function caller and is used in appendHoeringer().
       }
 
       

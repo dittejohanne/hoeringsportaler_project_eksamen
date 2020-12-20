@@ -214,7 +214,215 @@ p {
   color: #cccccc;
 } 
 
-/* ---------- høringer ---------- */
+/* ---------- tab menu mobile ---------- */
+.tab {
+  overflow: hidden;
+  background-color: var(--blue);
+  border-left: 3px solid var(--blue);
+  border-right: 3px solid var(--blue);
+  border-top: 3px solid var(--blue);
+  margin-top: 5%;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 15px 2px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: white
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: white;
+  color: var(--blue);
+
+}
+
+.tab button:focus {
+  color: #2D4459;
+  border-left: 3px solid var(--blue);
+  border-right: 3px solid var(--blue);
+  border-top: 3px solid var(--blue);
+  background-color: #fff;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 15px 2px;
+}
+
+.tablinks {
+  width: 20%;
+  padding: 15px 2px;
+  font-size: 1.1em;
+  color: white;
+}
+
+#filtrer {
+  width: 60% !important;
+}
+
+#tab_desktop {
+  display: none;
+}
+
+#filtrering_desktop {
+  display: none
+}
+
+#manchet_desktop {
+  display: none;
+}
+
+/* ---------- styling filtrering og modal  ---------- */
+.filtrering-wrap {
+  width: 60%;
+  margin: 5% 0 0 5%;
+}
+
+.filtrering-wrap select {
+padding: 7% 65% 7% 3%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: absolute;
+  z-index: 3;
+  /* Sit on top */
+  left: 0;
+  top: 274px;
+  height: 100%;
+  width: 100%;
+  /* Full width */
+  -webkit-animation-name: fadeIn;
+  /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+  bottom: 0;
+  top: 10;
+  background-color: #fefefe;
+  width: 80%;
+  height: 100%;
+  -webkit-animation-name: slideIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+  margin-left: 17%;
+  border-left: 3px solid var(--blue);
+
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  margin-top: 20%;
+  font-size: 1em;
+  font-weight: bold;
+  background-color: var(--blue);
+  padding: 3% 35%;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--blue);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-content h4 {
+  padding: 10% 0 3% 0;
+  margin: 0;
+  text-align: left;
+  font-size: 1.2em;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0
+  }
+
+  to {
+    bottom: 0;
+    opacity: 1
+  }
+}
+
+@keyframes slideIn {
+  from {
+    bottom: -300px;
+    opacity: 0
+  }
+
+  to {
+    bottom: 0;
+    opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+/* ---------- styling search mobil ---------- */
+.search-mobile {
+  margin-top: 3%;
+  padding: 4% 58% 4% 0%;
+  border: 2px solid var(--blue); 
+}
+
+.search-mobile::placeholder{
+  color: var(--blue);
+  padding-left: 13%;
+}
+
+.search-mobile::-webkit-search-cancel-button{
+  margin-right:-190px;
+}
+
+.search-desktop {
+  display: none;
+}
+
+
+/* ---------- styling høringer ---------- */
+
+/*høringer posts  */
 .flexContent {
   display: flex;
 }
@@ -335,265 +543,6 @@ p {
   display: none;
 }
 
-/* ---------- tab menu mobile ---------- */
-.tab {
-  overflow: hidden;
-  background-color: var(--blue);
-  border-left: 3px solid var(--blue);
-  border-right: 3px solid var(--blue);
-  border-top: 3px solid var(--blue);
-  margin-top: 5%;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 15px 2px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: white
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: white;
-  color: var(--blue);
-
-}
-
-.tab button:focus {
-  color: #2D4459;
-  border-left: 3px solid var(--blue);
-  border-right: 3px solid var(--blue);
-  border-top: 3px solid var(--blue);
-  background-color: #fff;
-}
-
-/*
-#MegaMenu a {
-  color: white;
-  font-family: cantiga-condensed, sans-serif;
-  font-size: 1.8em;
-  float: left;
-  display: block;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-#MegaMenu a.active {
-  background-color: white;
-  color: var(--blue);
-}
-*/
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 15px 2px;
-}
-
-.tablinks {
-  width: 20%;
-  padding: 15px 2px;
-  font-size: 1.1em;
-  color: white;
-}
-
-#filtrer {
-  width: 60% !important;
-}
-
-#tab_desktop {
-  display: none;
-}
-
-#filtrering_desktop {
-  display: none
-}
-
-#manchet_desktop {
-  display: none;
-}
-
-/* .iconKort {
-  background: url(images/location_icon.svg) no-repeat;
-  float: left;
-  width: 40px;
-  height: 40px;
-  z-index: 99999;
-} */
-
-/* ---------- modal styling ---------- */
-
-/* The Modal (background) */
-.modal {
-  display: none;
-  /* Hidden by default */
-  position: absolute;
-  z-index: 3;
-  /* Sit on top */
-  left: 0;
-  top: 274px;
-  height: 100%;
-  width: 100%;
-  /* Full width */
-  -webkit-animation-name: fadeIn;
-  /* Fade in the background */
-  -webkit-animation-duration: 0.4s;
-  animation-name: fadeIn;
-  animation-duration: 0.4s
-}
-
-/* Modal Content */
-.modal-content {
-  bottom: 0;
-  top: 10;
-  background-color: #fefefe;
-  width: 80%;
-  height: 100%;
-  -webkit-animation-name: slideIn;
-  -webkit-animation-duration: 0.4s;
-  animation-name: slideIn;
-  animation-duration: 0.4s;
-  margin-left: 17%;
-  border-left: 3px solid var(--blue);
-
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  margin-top: 20%;
-  font-size: 1em;
-  font-weight: bold;
-  background-color: var(--blue);
-  padding: 3% 35%;
-}
-
-.close:hover,
-.close:focus {
-  color: var(--blue);
-  text-decoration: none;
-  cursor: pointer;
-}
-
-#annuller {
-  background-color: #cccccc;
-  padding: 3% 28.5%;
-  margin-top: 3%;
-}
-
-.modal-wrap {
-  margin: 0 auto;
-  text-align: left;
-}
-
-.modal-content h4 {
-  padding: 10% 0 3% 0;
-  margin: 0;
-  text-align: left;
-  font-size: 1.2em;
-}
-
-.modal-body {
-  padding: 2px 16px;
-}
-
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-/* Add Animation */
-@-webkit-keyframes slideIn {
-  from {
-    bottom: -300px;
-    opacity: 0
-  }
-
-  to {
-    bottom: 0;
-    opacity: 1
-  }
-}
-
-@keyframes slideIn {
-  from {
-    bottom: -300px;
-    opacity: 0
-  }
-
-  to {
-    bottom: 0;
-    opacity: 1
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
-  }
-}
-
-/* ---------- styling search mobil ---------- */
-.search-mobile {
-  margin-top: 3%;
-  padding: 4% 58% 4% 0%;
-  border: 2px solid var(--blue); 
-}
-
-.search-mobile::placeholder{
-  color: var(--blue);
-  padding-left: 13%;
-}
-
-.search-mobile::-webkit-search-cancel-button{
-  margin-right:-190px;
-}
-
-.search-desktop {
-  display: none;
-}
-/* ---------- styling filtrering mobil ---------- */
-
-.filtrering-wrap {
-  width: 60%;
-  margin: 5% 0 0 5%;
-}
-
-.filtrering-wrap select {
-padding: 7% 65% 7% 3%;
-}
-
-#timePeriod {
-  display: inline;
-  margin: 0 5%;
-}
-
-
-/* ---------- styling høringer ---------- */
 /* Grid container */
 .grid-container {
   display: grid;
@@ -633,7 +582,7 @@ padding: 7% 65% 7% 3%;
   .grid-container {
     grid-template-columns: 30% 30% 30%;
     margin-top: 1%;
-    padding-top: 8%;
+    padding-top: 2%;
   }
 
   .grid-container>article {
@@ -705,6 +654,19 @@ padding: 7% 65% 7% 3%;
     width: 15%;
   }
 
+   /* ---------- borgermøder og om hoeringsportal styling ---------- */
+  .none {
+    display: none;
+  }
+
+  .coming-soon {
+    margin-top: 10%;
+  }
+
+  .coming-soon img {
+    width: 30%;
+  }
+
   /* ---------- filtrering styling ---------- */
 
   #filtrering_desktop {
@@ -712,8 +674,13 @@ padding: 7% 65% 7% 3%;
     margin-top: 15%;
   }
 
+  #filtrering_desktop h4 {
+margin: 0%;
+text-align: left;
+  }
+
   .filtrering-wrap select {
-    padding: 7% 5% 7% 3%;
+    padding: 5% 7% 5% 3%;
   }
 
   .search-mobile {
@@ -825,4 +792,10 @@ padding: 7% 65% 7% 3%;
   }
 
 
+}
+
+@media (min-width: 1400px) {
+  #filtrering_desktop h4 {
+    padding-left: 5%;
+  }
 }

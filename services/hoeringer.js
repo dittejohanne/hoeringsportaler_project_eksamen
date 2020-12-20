@@ -1,10 +1,11 @@
 import loaderService from "./loader.js";
 class HoeringService {
   constructor() {
-    this.hoeringer = [];
+    this.hoeringer = []; //global variable
 
   }
 
+  // fetch all Høringer from WP
   async getHoeringer() {
     return await fetch(
         "http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed"
@@ -14,36 +15,37 @@ class HoeringService {
       })
       .then((json) => {
         this.hoeringer = json; //saves json data in global variable
-        return json;
+        return json; // ends function execution and specifies json to be returned to the function caller.
       });
   }
 
     // search functionality
- search(value) {
+ search(value) { //value in search field
   console.log(value);
- let searchQuery = value.toLowerCase();
- let filteredHoeringer = [];
- for (let hoering of this.hoeringer) {
-   let title = hoering.title.rendered.toLowerCase();
-   if (title.includes(searchQuery)) {
-     filteredHoeringer.push(hoering);
+ let searchQuery = value.toLowerCase(); //converts value to lower case letters and makes variable.
+ let filteredHoeringer = []; //variable with empty array
+ for (let hoering of this.hoeringer) { //loops through global variable with json data
+   let title = hoering.title.rendered.toLowerCase(); // varibale of høringer titel to lower case letters
+   if (title.includes(searchQuery)) { 
+     filteredHoeringer.push(hoering); // push() adds hoeringer in array if titel includes in searchQuery
    }
  }
- return filteredHoeringer;
+ return filteredHoeringer; //ends function execution and specifies array to be returned to the function caller.
 }
 
-  // fetch all Locaitions / categories from WP
+  // fetch all locaitions from WP (filtrering)
   async getLocations() {
     return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=3')
       .then(function (response) {
         return response.json();
       })
-      .then(function (categories) {
-        console.log(categories);
-        return categories;
+      .then(function (categoriesLocation) {
+        console.log(categoriesLocation);
+        return categoriesLocation; //ends function execution and specifies categoriesLocation to be returned to the function caller.
       });
   }
 
+  // fetch all status from WP (filtrering)
   async getStatus() {
     return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=10')
       .then(function (response) {
@@ -51,10 +53,11 @@ class HoeringService {
       })
       .then(function (categoriesStatus) {
         console.log(categoriesStatus);
-        return categoriesStatus;
+        return categoriesStatus;  //ends function execution and specifies categories to be returned to the function caller.
       });
   }
 
+  // fetch all høringstyper from WP (filtrering)
   async getType() {
     return await fetch('http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/categories?parent=7')
       .then(function (response) {
@@ -62,29 +65,27 @@ class HoeringService {
       })
       .then(function (categoriesType) {
         console.log(categoriesType);
-        return categoriesType;
+        return categoriesType;  //ends function execution and specifies categoriesType to be returned to the function caller.
       });
   }
 
   // category selected event - fetch hoeringer by selected category
-  async categorySelected(locationId) {
-    console.log(`Location ID: ${locationId}`);
-    if (locationId) {
-      //showLoader(true);
-      return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${locationId}`)
+  async categorySelected(hoeringId) {
+    console.log(`Location ID: ${hoeringId}`);
+    if (hoeringId) {
+      return await fetch(`http://dittejohannejustesen.dk/wordpress/hoeringsportal/wp-json/wp/v2/posts?_embed&categories=${hoeringId}`)
         .then(function (response) {
           return response.json();
         })
-        .then(function (locations) {
-          //showLoader(false);
-          return locations;
+        .then(function (hoeringer) {
+          return hoeringer;  //ends function execution and specifies hoeringer to be returned to the function caller.
         });
     } else {
       // create feedback
     }
   }
 
-  openTabs(evt, tabName) {
+openTabs(evt, tabName) {
     // Declare all variables
     let i, tabcontent, tablinks;
 
@@ -103,7 +104,6 @@ class HoeringService {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
-
   }
 
   defaultOpen() {
@@ -111,7 +111,7 @@ class HoeringService {
     document.getElementById("defaultOpen").click();
   }
 
-  // // Triggers button "Hvad siger du?""
+  // // Triggers button "Filtrer" on mobile
   modalOpen() {
     // Get the modal
     let x = document.getElementById("myModal");
@@ -122,7 +122,7 @@ class HoeringService {
     }
   }
 
-  // When the user clicks on <span> (x), close the modal
+  // When the user clicks on button "Ok" close modal
   modalClose() {
     let modal = document.querySelector(".modal");
     modal.style.display = "none";

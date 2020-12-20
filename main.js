@@ -6,6 +6,7 @@ import spaService from "./services/spa.js";
 import navService from "./services/nav.js"
 import OmPage from "./pages/omHoeringsportalen.js";
 import hoeringService from "./services/hoeringer.js"
+//import loaderService from "./services/loader.js";
 
 // Declare and init
 let navbar = new NavBar();
@@ -15,6 +16,7 @@ let omPage = new OmPage();
 
 // init services
 spaService.init();
+//loaderService.show(true);
 
 window.pageChange = () => spaService.pageChange();
 window.burgerMenu = () => navService.burgerMenu();
