@@ -139,7 +139,7 @@ export default class HoeringerPage {
          <!-- Tab links -->
          <div class="tab" id="tab_desktop">
          <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
-         <button class="tablinks, active" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
+         <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          </div>
 
          <div class="container">
