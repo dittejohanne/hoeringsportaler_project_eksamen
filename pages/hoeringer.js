@@ -139,7 +139,7 @@ export default class HoeringerPage {
          <!-- Tab links -->
          <div class="tab" id="tab_desktop">
          <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
-         <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
+         <button class="tablinks, active" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          </div>
 
          <div class="container">
@@ -302,7 +302,18 @@ export default class HoeringerPage {
         return name; //ends function execution and specifies name to be returned to the function caller and is used in appendHoeringer().
       }
 
-      
-
+    //   appendActive() {
+    //   var header = document.getElementById("tab_desktop");
+    //   var btns = header.getElementsByClassName("tablinks");
+    //   for (var i = 0; i < btns.length; i++) {
+    //     btns[i].addEventListener("click", function() {
+    //     var current = document.getElementsByClassName("active");
+    //     current[0].className = current[0].className.replace(" active", "");
+    //     this.className += " active";
+    //     });
+    //   }
+    //   this.appendActive()
+    // }
+  
 
 }
