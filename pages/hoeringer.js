@@ -34,7 +34,7 @@ export default class HoeringerPage {
         <h4>Høringsfrist</h4>
         <h3>${hoering.acf.horingsfrist}</h3>
         <div id="comments" class="flexContent">
-        <img src="../images/comments_icon.svg">
+        <img src="images/comments_icon.svg">
         10
         </div>
         </div>
@@ -48,11 +48,11 @@ export default class HoeringerPage {
         
         <div id="typesTextBoks">
         <div id="location">
-        <img src="../images/location_icon.svg">
+        <img src="images/location_icon.svg">
         <h3>${this.getLocation(hoering)}</h3>
         </div>
         <div id="hearing">
-        <img src="../images/hearing.svg">
+        <img src="images/hearing.svg">
         <h3>${this.getHoeringType(hoering)}</h3>
         </div>
         </div>
@@ -69,18 +69,18 @@ export default class HoeringerPage {
     document.querySelector('#hoeringsportal').innerHTML += /*html*/ `
       <section id="hoeringer" class="page">
       <div id="header_img">
-       <img src="../images/nyhavn-crop.png">
+       <img src="images/nyhavn-crop.png" alt="nyhavn">
        </div> 
 
        <div id="manchet_mobile">
         <h2>Høringer</h2>
-       <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
+       <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… <a href="http://dittejohannejustesen.dk/eaaa/hoeringsportaler_project/#om">Læs mere</a></p>
        </div>
 
        <div class="container">
        <div id="manchet_desktop">
         <h2>Hvad er en høring?</h2>
-       <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… Læs mere<p>
+        <p>I en høring har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag… <a href="http://dittejohannejustesen.dk/eaaa/hoeringsportaler_project/#om">Læs mere</a></p>
        </div>
        </div>
 
@@ -90,7 +90,7 @@ export default class HoeringerPage {
          <!-- Tab links -->
          <div id="tab_mobile" class="tab">
          <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
-         <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
+         <button class="tablinks active" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          <button class="tablinks" onclick="modalOpen()">Filtrér</button>
          </div>
 
@@ -139,7 +139,7 @@ export default class HoeringerPage {
          <!-- Tab links -->
          <div class="tab" id="tab_desktop">
          <button class="tablinks" onclick="openTabs(event, 'Kort')">Kort</button>
-         <button class="tablinks" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
+         <button class="tablinks active" onclick="openTabs(event, 'grid-hoeringer')" id="defaultOpen">Liste</button>
          </div>
 
          <div class="container">
@@ -181,8 +181,9 @@ export default class HoeringerPage {
 
        <div id="grid-hoeringer" class="grid-container tabcontent"></div>
        
-        <div id="Kort" class="tabcontent">
-            <img src="../images/map.jpg">
+        <div id="Kort" class="tabcontent" style="display:none">
+            <img class="map_mobile" src="images/map.jpg">
+            <img class="map_desktop" src="images/map_desktop.png">
               </div>
        
         </section>
@@ -301,6 +302,8 @@ export default class HoeringerPage {
         }
         return name; //ends function execution and specifies name to be returned to the function caller and is used in appendHoeringer().
       }
+
+    
 
     //   appendActive() {
     //   var header = document.getElementById("tab_desktop");

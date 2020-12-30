@@ -9,7 +9,7 @@ export default class HomePage {
        <h2 class="none">Borgermøder<h2> 
 
        <section class="coming-soon">
-             <img src="../images/under-construction.svg">
+             <img src="images/under-construction.svg">
              <h6>....Kommer snart</h6>
              </section>
       </section>

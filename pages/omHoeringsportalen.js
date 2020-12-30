@@ -8,7 +8,7 @@ export default class OmPage {
       <section id="om" class="page">
        <h2 class="none">Om Høringsportalen<h2> 
        <section class="coming-soon">
-             <img src="../images/under-construction.svg">
+             <img src="images/under-construction.svg">
              <h6>....Kommer snart</h6>
              </section>
       </section>

@@ -214,6 +214,12 @@ p {
   color: #cccccc;
 } 
 
+/* ---------- Kort ---------- */
+
+.map_desktop {
+  display: none;
+}
+
 /* ---------- tab menu mobile ---------- */
 .tab {
   overflow: hidden;
@@ -282,6 +288,12 @@ p {
 
 #manchet_desktop {
   display: none;
+}
+
+#manchet_mobile a {
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--blue);
 }
 
 /* ---------- styling filtrering og modal  ---------- */
@@ -448,7 +460,9 @@ padding: 7% 65% 7% 3%;
 
 #comments img {
   width: 20%;
+  height: 20px;
   margin-right: 4%;
+  max-height: 25%
 }
 
 #paddingInfo h4 {
@@ -457,16 +471,6 @@ padding: 7% 65% 7% 3%;
 }
 #paddingInfo h3, h4, #comments {
   margin: 20% 0;
-}
-
-
-#typesTextBoks img {
-  width: 30%;
-}
-
-#hoeringsImg {
-  background-color: yellow;
-  width: 100%;
 }
 
 .backgroundimg {
@@ -479,7 +483,6 @@ padding: 7% 65% 7% 3%;
 }
 
 #hoeringContent {
-  width: 100%;
   margin-top: 10%;
 }
 
@@ -500,8 +503,10 @@ padding: 7% 65% 7% 3%;
 
 #textBoks p {
   overflow: hidden;
-  white-space: nowrap;
   width: 95%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
 }
 
 .overflow-ellipsis {
@@ -509,18 +514,20 @@ padding: 7% 65% 7% 3%;
 }
 
 #typesTextBoks {
-  width: 100%;
-  display: flex;
-  margin-top: 6%;
+  display: grid;
+  grid-gap: 10% 30%;
+  grid-template-columns: auto auto auto;
 }
 
 #location img {
-  width: 7%;
+  width: 80%;
+  height: 20px;
   margin-right: 1%;
+  padding: 0!important;
 }
 
 #location {
-  width: 73%;
+  width: 45%;
   display: inline-flex
 }
 
@@ -530,8 +537,10 @@ padding: 7% 65% 7% 3%;
 }
 
 #hearing img {
-  width: 12%;
+  width: 30%;
+  height: 20px;
   margin-right: 4%;
+  padding: 0!important
 }
 
 #typesTextBoks h3 {
@@ -645,12 +654,7 @@ padding: 7% 65% 7% 3%;
   }
 
   #hoeringer img {
-    width: 100%;
     display: block;
-  }
-
-  #hoeringContent img {
-    width: 15%;
   }
 
 
@@ -667,11 +671,24 @@ padding: 7% 65% 7% 3%;
     width: 30%;
   }
 
+  /* ---------- Kort ---------- */
+
+.map_desktop {
+  display: block;
+  width: 100%!important;
+  margin: 0 auto;
+}
+
+.map_mobile {
+  display: none!important;
+}
+
   /* ---------- filtrering styling ---------- */
 
   #filtrering_desktop {
     display: flex;
     margin-top: 15%;
+    margin-right: 7%;
   }
 
   #filtrering_desktop h4 {
@@ -691,7 +708,7 @@ text-align: left;
     display: block;
     position: relative;
     left: 220px;
-    top: -80px;
+    top: -70px;
     border: 5px solid white;
     border-bottom: 5px solid var(--blue);
   }
@@ -761,19 +778,25 @@ text-align: left;
     position: relative;
     left: 40px;
     top: -280px;
-    width: 40%;
+    width: 41%;
   }
   
   #manchet_desktop h2 {
     font-size: 2em;
   }
 
-  #Kort img {
-    width: 40%;
+  #manchet_desktop a {
+    text-decoration: none;
+    font-weight: 800;
+    color: var(--blue);
   }
 
   #header_img {
     display: block;
+  }
+
+  #header_img img {
+    width: 100%;
   }
 
 
